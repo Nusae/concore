@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"handle_move_to",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"handle_move_to",
+  "parent":{
+    "name":"Scripts",
+    "path":"folders/Scripts.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

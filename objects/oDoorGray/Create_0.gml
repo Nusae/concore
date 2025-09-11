@@ -1,0 +1,3 @@
+opened = false; 
+solid = true;
+
