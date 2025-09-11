@@ -1,1 +1,0 @@
-global.susie_meta = true; 

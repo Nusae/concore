@@ -1,1 +1,0 @@
-global.meta_ralsei = true; 
