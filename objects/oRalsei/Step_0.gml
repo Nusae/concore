@@ -1,189 +1,106 @@
-///@description Step event 
-/*right_key = keyboard_check(ord("D"));
-left_key  = keyboard_check(ord("A"));
-up_key    = keyboard_check(ord("S"));
-down_key  = keyboard_check(ord("W"));
+/// Step Event - Ralsei
 
-
-//Movement 
-xspd = (right_key-left_key)* move_spd; 
-yspd = (up_key - down_key) * move_spd; 
-
-
-//Animate 
-
-if xspd > 0{
-	sprite_index = sRalseiRight; 
-} else if xspd < 0{
-	sprite_index = sRalseiLeft; 
-} else if yspd > 0{
-	sprite_index = sRalseiDown; 
-} else if yspd < 0{
-	sprite_index = sRalseiUp; 
-}
-
-if ( xspd != 0 or yspd != 0){
-	image_speed = 1; 	
-} else{
-	image_speed= 0; 
-	image_index = 0;
-}
-x += xspd; 
-y += yspd; 
-
-if ( global.keys_gray > 1) {
-    global.sentado_gray = 0;
-    movimiento_habilitado = true;
-	sprite_index = sRalseiDown;
-	move_spd=1; 
-}
-
-if ( global.keys_golden > 0) {
-    global.sentado_gold = 0;
-    movimiento_habilitado = true;
-	sprite_index = sRalseiDown;
-	move_spd=1; 
-}
-
-if (global.sentado_ralsei) {
-    move_spd = 0;
-	sprite_index = sRalseiSat; 
-}
-
-if (instance_exists(oPlayButton)) if oPlayButton.playmode == false{ move_spd = 0}*/
-/// @description Handle movement and command execution for Ralsei
 show_debug_message("Step running for Ralsei, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
 
-// Wait for commandmode to be initialized
+/// --- Inicialización ---
 if (waiting_for_commandmode) {
     if (variable_global_exists("commandmode")) {
-        show_debug_message("Command mode initialized as: " + string(global.commandmode));
+        show_debug_message("Command mode initialized: " + string(global.commandmode));
         if (global.commandmode) {
-            speed = 0; // Start with no movement
+            speed = 0;
             target_x = x;
             target_y = y;
             current_action = noone;
             my_name = "Ralsei";
+			movimiento_habilitado = true;
         } else {
-            xspd = 0;
-            yspd = 0;
-            move_spd = 1; // Inicializar move_spd aquí
+            xspd = 0; yspd = 0;
+            move_spd = 1;
             has_key = false;
             keys_golden = 0;
             keys_gray = 0;
             movimiento_habilitado = true;
         }
-        waiting_for_commandmode = false; // Stop waiting after initialization
+        waiting_for_commandmode = false;
     } else {
-        show_debug_message("Waiting for commandmode to be initialized...");
-        exit; // Exit the Step event to avoid further processing
+        show_debug_message("Waiting for commandmode to initialize...");
+        exit;
     }
 }
 
+/// --- COMMAND MODE ---
 if (global.commandmode && !waiting_for_commandmode) {
-    if (variable_global_exists("char_commands") && current_action == noone) {
+
+if (current_action == noone) {
+    // Asegurarse de que el mapa existe
+    if (!variable_global_exists("char_commands")) global.char_commands = ds_map_create();
+
+    if (ds_map_exists(global.char_commands, my_name)) {
         var cmd_list = global.char_commands[? my_name];
-        show_debug_message("Command list for " + my_name + " exists: " + string(cmd_list != undefined));
         if (cmd_list != undefined && ds_list_size(cmd_list) > 0) {
             current_action = cmd_list[| 0];
-            show_debug_message("New action for " + my_name + ": " + current_action.action + " " + current_action.target);
+            show_debug_message("Executing next action: " + current_action.action + " " + current_action.target);
+
             if (current_action.action == "move_to") {
-                handle_move_to(self, current_action); // Call the reusable function
+                handle_move_to(self, current_action);
             } else {
-                show_debug_message("Unsupported action, resetting");
+                show_debug_message("Unsupported action, skipping");
                 current_action = noone;
             }
         }
     }
-} else if (!waiting_for_commandmode) {
-    // User movement mode
-    var right_key = keyboard_check(ord("D"));
-    var left_key = keyboard_check(ord("A"));
-    var up_key = keyboard_check(ord("S"));
-    var down_key = keyboard_check(ord("W"));
+}
 
-    // Movement (asegurarse de que move_spd esté definido)
-    if (!variable_instance_exists(id, "move_spd")) move_spd = 1; // Fallback si no está inicializado
+
+    // Comprobar si terminó el path
+    if (current_action != noone && current_action.action == "move_to") {
+        if (path_index == -1) { // llegó al final del path
+            show_debug_message(my_name + " reached target: " + string(current_action.target));
+            
+            // Eliminar comando completado de la lista
+            with (obj_command_controller) {
+                if (variable_global_exists("char_commands") && ds_map_exists(global.char_commands, other.my_name)) {
+                    var cmd_list = global.char_commands[? other.my_name];
+                    if (ds_list_size(cmd_list) > 0) ds_list_delete(cmd_list, 0);
+                }
+            }
+
+            current_action = noone;
+        }
+    }
+
+}
+
+/// --- USER MOVEMENT MODE ---
+else if (!waiting_for_commandmode) {
+    var right_key = keyboard_check(ord("D"));
+    var left_key  = keyboard_check(ord("A"));
+    var up_key    = keyboard_check(ord("S"));
+    var down_key  = keyboard_check(ord("W"));
+
+    if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
     xspd = (right_key - left_key) * move_spd;
     yspd = (down_key - up_key) * move_spd;
 
-    // Animate
-    if (xspd > 0) {
-        sprite_index = sRalseiRight;
-    } else if (xspd < 0) {
-        sprite_index = sRalseiLeft;
-    } else if (yspd > 0) {
-        sprite_index = sRalseiDown;
-    } else if (yspd < 0) {
-        sprite_index = sRalseiUp;
-    }
+    // Animación
+    if (xspd > 0) sprite_index = sRalseiRight;
+    else if (xspd < 0) sprite_index = sRalseiLeft;
+    else if (yspd > 0) sprite_index = sRalseiDown;
+    else if (yspd < 0) sprite_index = sRalseiUp;
 
-    if (xspd != 0 || yspd != 0) {
-        image_speed = 1;
-    } else {
-        image_speed = 0;
-        image_index = 0;
-    }
+    if (xspd != 0 || yspd != 0) image_speed = 1;
+    else { image_speed = 0; image_index = 0; }
 
-    // Apply movement
+    // Movimiento
     x += xspd;
     y += yspd;
 
-    // Game state logic
-    if (keys_gray > 1) { // Changed to instance variable
-        global.sentado_gray = 0;
-        movimiento_habilitado = true;
-        sprite_index = sRalseiDown;
-        move_spd = 1;
-    }
-
-    if (keys_golden > 0) { // Changed to instance variable
-        global.sentado_gold = 0;
-        movimiento_habilitado = true;
-        sprite_index = sRalseiDown;
-        move_spd = 1;
-    }
-
-    if (global.sentado_ralsei) {
-        move_spd = 0;
-        sprite_index = sRalseiSat;
-    }
-
-	if (instance_exists(oPlayButton)) {
-		move_spd = (oPlayButton.playmode) ? 1 : 0;
-	}
+    // Estados
+    if (keys_gray > 1) { global.sentado_gray = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
+    if (keys_golden > 0) { global.sentado_gold = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
+    if (global.sentado_ralsei) { move_spd = 0; sprite_index = sRalseiSat; }
+    if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));
 }
 
-// Only move if an action is active and it's a move_to (command mode)
-if (global.commandmode && !waiting_for_commandmode && current_action != noone && current_action.action == "move_to" && speed > 0) {
-    var dist = point_distance(x, y, target_x, target_y);
-    var tolerance = 50; // 🔥 margen para considerar "llegado"
-    show_debug_message(my_name + " distance to target: " + string(dist) + ", from " + string(x) + ", " + string(y));
-
-    if (dist > tolerance) {
-        target_x = clamp(target_x, 0, room_width);
-        target_y = clamp(target_y, 0, room_height);
-        move_towards_point(target_x, target_y, speed);
-        show_debug_message(my_name + " moving to " + string(target_x) + ", " + string(target_y));
-    } else {
-        // 🔥 Se considera que llegó
-        x = target_x;
-        y = target_y;
-
-        with (obj_command_controller) {
-            if (variable_global_exists("char_commands") && ds_map_exists(global.char_commands, other.my_name)) {
-                var cmd_list = global.char_commands[? other.my_name];
-                ds_list_delete(cmd_list, 0);
-                if (ds_list_size(cmd_list) == 0) {
-                    show_debug_message("No more commands for " + other.my_name);
-                }
-            }
-        }
-
-        current_action = noone;
-        speed = 0;
-        show_debug_message(my_name + " reached target at " + string(x) + ", " + string(y));
-    }
-}

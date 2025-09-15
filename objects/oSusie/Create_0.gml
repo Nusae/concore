@@ -16,3 +16,4 @@ my_name = "Susie";
 current_action = noone; 
 keys_gray = 0;
 keys_golden = 0;
+depth = -100;

@@ -1,196 +1,125 @@
-///@description Step event 
-/*right_key = keyboard_check(ord("K"));
-left_key  = keyboard_check(ord("H"));
-up_key    = keyboard_check(ord("J"));
-down_key  = keyboard_check(ord("U"));
-
-
-//Movement 
-xspd = (right_key-left_key)* move_spd; 
-yspd = (up_key - down_key) * move_spd; 
-
-
-
-//Animate 
-
-if xspd > 0{
-	sprite_index = sSusieRight; 
-} else if xspd < 0{
-	sprite_index = sSusieLeft; 
-} else if yspd > 0{
-	sprite_index = sSusieDown; 
-} else if yspd < 0{
-	sprite_index = sSusieUp; 
-}
-
-if ( xspd != 0 or yspd != 0){
-	image_speed = 1; 	
-} else{
-	image_speed= 0; 
-	image_index = 0;
-}
-x += xspd; 
-y += yspd; 
-
-if ( global.keys_gray > 1) {
-    global.sentado_gray = 0;
-    movimiento_habilitado = true;
-	sprite_index = sSusieDown;
-	move_spd=1; 
-}
-
-if ( global.keys_golden > 0) {
-    global.sentado_gold = 0;
-    movimiento_habilitado = true;
-	sprite_index = sSusieDown;
-	move_spd=1; 
-}
-
-if (global.sentado_susie) {
-    move_spd = 0;
-	sprite_index = sSusieSat; 
-}
-
-if (instance_exists(oPlayButton)) if oPlayButton.playmode == false{ move_spd = 0}*/
-
-
 /// @description Step event for Susie
-// Step event
-show_debug_message("Step running for " + my_name + ", current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
+show_debug_message("Step running for Susie, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
 
-// Wait for commandmode to be initialized
+// --- Initialization ---
 if (waiting_for_commandmode) {
     if (variable_global_exists("commandmode")) {
-        show_debug_message("Command mode initialized as: " + string(global.commandmode));
+        show_debug_message("Command mode initialized: " + string(global.commandmode));
         if (global.commandmode) {
             speed = 0;
             target_x = x;
             target_y = y;
             current_action = noone;
-            my_name = "Susie"; // Set Susie's name
+            my_name = "Susie";
             xspd = 0;
             yspd = 0;
             move_spd = 1;
+            has_key = false;
+            keys_gray = 0;
+            keys_golden = 0;
+            movimiento_habilitado = true;
         } else {
             xspd = 0;
             yspd = 0;
             move_spd = 1;
             has_key = false;
-            keys_golden = 0;
             keys_gray = 0;
+            keys_golden = 0;
             movimiento_habilitado = true;
         }
         waiting_for_commandmode = false;
     } else {
-        show_debug_message("Waiting for commandmode to be initialized...");
+        show_debug_message("Waiting for commandmode to initialize...");
         exit;
     }
 }
 
-// Command mode: Process commands if enabled
+// --- Command Mode ---
 if (global.commandmode && !waiting_for_commandmode) {
-    if (variable_global_exists("char_commands") && current_action == noone) {
-        var cmd_list = global.char_commands[? my_name];
-        show_debug_message("Command list for " + my_name + " exists: " + string(cmd_list != undefined));
-        if (cmd_list != undefined && ds_list_size(cmd_list) > 0) {
-            current_action = cmd_list[| 0];
-            show_debug_message("New action for " + my_name + ": " + current_action.action + " " + current_action.target);
-            if (current_action.action == "move_to") {
-                handle_move_to(self, current_action); // Call the reusable function
-            } else {
-                show_debug_message("Unsupported action, resetting");
-                current_action = noone;
+    if (current_action == noone) {
+        // Ensure the command map exists
+        if (!variable_global_exists("char_commands")) global.char_commands = ds_map_create();
+
+        if (ds_map_exists(global.char_commands, my_name)) {
+            var cmd_list = global.char_commands[? my_name];
+            if (cmd_list != undefined && ds_list_size(cmd_list) > 0) {
+                current_action = cmd_list[| 0];
+                show_debug_message("Executing next action: " + current_action.action + " " + string(current_action.target));
+
+                if (current_action.action == "move_to") {
+                    handle_move_to(self, current_action);
+                } else {
+                    show_debug_message("Unsupported action, skipping");
+                    current_action = noone;
+                }
             }
         }
     }
-} else if (!waiting_for_commandmode) {
-    // User movement mode
+
+    // Check if the path is complete
+    if (current_action != noone && current_action.action == "move_to") {
+        if (path_index == -1) { // Reached the end of the path
+            show_debug_message(my_name + " reached target: " + string(current_action.target));
+            
+            // Remove completed command
+            with (obj_command_controller) {
+                if (variable_global_exists("char_commands") && ds_map_exists(global.char_commands, other.my_name)) {
+                    var cmd_list = global.char_commands[? other.my_name];
+                    if (ds_list_size(cmd_list) > 0) ds_list_delete(cmd_list, 0);
+                }
+            }
+
+            current_action = noone;
+        }
+    }
+}
+
+// --- User Movement Mode ---
+else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(ord("K"));
     var left_key = keyboard_check(ord("H"));
     var up_key = keyboard_check(ord("J"));
     var down_key = keyboard_check(ord("U"));
 
-    // Movement
+    if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
     xspd = (right_key - left_key) * move_spd;
-    yspd = (down_key - up_key) * move_spd; // Adjusted for correct up/down logic
+    yspd = (down_key - up_key) * move_spd;
 
-    // Animate
-    if (xspd > 0) {
-        sprite_index = sSusieRight;
-    } else if (xspd < 0) {
-        sprite_index = sSusieLeft;
-    } else if (yspd > 0) {
-        sprite_index = sSusieDown;
-    } else if (yspd < 0) {
-        sprite_index = sSusieUp;
-    }
+    // Animation
+    if (xspd > 0) sprite_index = sSusieRight;
+    else if (xspd < 0) sprite_index = sSusieLeft;
+    else if (yspd > 0) sprite_index = sSusieDown;
+    else if (yspd < 0) sprite_index = sSusieUp;
 
-    if (xspd != 0 || yspd != 0) {
-        image_speed = 1;
-    } else {
-        image_speed = 0;
-        image_index = 0;
-    }
+    if (xspd != 0 || yspd != 0) image_speed = 1;
+    else { image_speed = 0; image_index = 0; }
 
     // Apply movement
-    x += xspd;
-    y += yspd;
+    if (movimiento_habilitado) {
+        x += xspd;
+        y += yspd;
+    }
 
     // Game state logic
-    if (global.keys_gray > 1) {
+    if (keys_gray > 1) {
         global.sentado_gray = 0;
         movimiento_habilitado = true;
         sprite_index = sSusieDown;
         move_spd = 1;
     }
-
-    if (global.keys_golden > 0) {
+    if (keys_golden > 0) {
         global.sentado_gold = 0;
         movimiento_habilitado = true;
         sprite_index = sSusieDown;
         move_spd = 1;
     }
-
     if (global.sentado_susie) {
         move_spd = 0;
         sprite_index = sSusieSat;
     }
+    if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
-	if (instance_exists(oPlayButton)) {
-		move_spd = (oPlayButton.playmode) ? 1 : 0;
-	}
-
-    show_debug_message(my_name + " moved manually to: " + string(x) + ", " + string(y));
-}
-
-// Only move if an action is active and it's a move_to (command mode)
-if (global.commandmode && !waiting_for_commandmode && current_action != noone && current_action.action == "move_to" && speed > 0) {
-    var dist = point_distance(x, y, target_x, target_y);
-    var tolerance = 50; // 🔥 margen para considerar "llegado"
-    show_debug_message(my_name + " distance to target: " + string(dist) + ", from " + string(x) + ", " + string(y));
-
-    if (dist > tolerance) {
-        target_x = clamp(target_x, 0, room_width);
-        target_y = clamp(target_y, 0, room_height);
-        move_towards_point(target_x, target_y, speed);
-        show_debug_message(my_name + " moving to " + string(target_x) + ", " + string(target_y));
-    } else {
-        // 🔥 Se considera que llegó
-        x = target_x;
-        y = target_y;
-
-        with (obj_command_controller) {
-            if (variable_global_exists("char_commands") && ds_map_exists(global.char_commands, other.my_name)) {
-                var cmd_list = global.char_commands[? other.my_name];
-                ds_list_delete(cmd_list, 0);
-                if (ds_list_size(cmd_list) == 0) {
-                    show_debug_message("No more commands for " + other.my_name);
-                }
-            }
-        }
-
-        current_action = noone;
-        speed = 0;
-        show_debug_message(my_name + " reached target at " + string(x) + ", " + string(y));
+    if (xspd != 0 || yspd != 0) {
+        show_debug_message("Susie moved manually to: " + string(x) + ", " + string(y));
     }
 }

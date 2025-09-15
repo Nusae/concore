@@ -1,26 +1,29 @@
-/// @function handle_move_to(character, current_action, target_x, target_y, speed)
-/// @description Handles the move_to logic for any character
-/// @param character The instance id of the character
-/// @param current_action The current action struct
-/// @param target_x Var for target x (passed by reference)
-/// @param target_y Var for target y (passed by reference)
-/// @param speed Var for speed (passed by reference)
 function handle_move_to(character, current_action) {
     var target_obj = noone;
-    var target_name = "o" + current_action.target; // Generic (e.g., oWall, oBall)
-    var num_targets = instance_number(asset_get_index(target_name));
-    show_debug_message("Number of " + target_name + " instances: " + string(num_targets));
-    if (num_targets > 0) {
-        target_obj = instance_find(asset_get_index(target_name), 0); // First instance
-        show_debug_message("Target " + target_name + " found at: " + string(target_obj.x) + ", " + string(target_obj.y));
+    var target_name = "o" + current_action.target; 
+    var obj_index = asset_get_index(target_name);
+
+    if (instance_exists(obj_index)) {
+        target_obj = instance_nearest(character.x, character.y, obj_index);
     }
+
     if (target_obj != noone) {
-        character.target_x = target_obj.x;
-        character.target_y = target_obj.y;
-        character.speed = 2;
-        show_debug_message(character.my_name + " target set to: " + string(character.target_x) + ", " + string(character.target_y));
+        // Centro del sprite
+        var tx = target_obj.x + (sprite_width/2 - sprite_xoffset);
+        var ty = target_obj.y + (sprite_height/2 - sprite_yoffset);
+
+        // Crear path evitando paredes
+        var path = path_add();
+        if (mp_grid_path(global.navgrid, path, character.x, character.y, tx, ty, true)) {
+            path_start(path, 2, path_action_stop, false);
+            show_debug_message(character.my_name + " following path to " + string(tx) + ", " + string(ty));
+        } else {
+            show_debug_message("⚠️ No path found to target: " + string(current_action.target));
+            current_action = noone;
+            path_delete(path);
+        }
     } else {
-        show_debug_message("No " + target_name + " target found, resetting action");
+        show_debug_message("No target found: " + target_name);
         current_action = noone;
     }
 }

@@ -7,7 +7,8 @@ draw_sprite(sKeyGray, 0, 20, 40); // Sprite de la llave gris
 draw_text(40, 40, "x " + string(global.keys_gray)); // Cantidad al lado
 
 if( global.sentado_ralsei + global.sentado_kris + global.sentado_susie == 3){
-	sprite_index=sBoom; 	
+	sprite_index=sBoom;
+	global.explode = true; 
 }
 
 draw_text(40, 60, "Sentado " + string(global.sentado_kris)+string(global.sentado_susie)+string(global.sentado_ralsei));

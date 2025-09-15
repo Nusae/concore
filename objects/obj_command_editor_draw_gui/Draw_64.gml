@@ -11,7 +11,7 @@ draw_rectangle(gui_x, gui_y, gui_x + gui_width, gui_y + gui_height, false);
 // Opciones para los dropdowns
 var char_options = ["Ralsei", "Kris", "Susie"];
 var action_options = ["move_to"];
-var target_options = ["Wall", "Button", "Switch", "Ralsei", "Kris", "Susie"];
+var target_options = ["Wall", "Button", "Switch", "Ralsei", "Kris", "Susie", "Meta"];
 
 // Control por teclas
 if (keyboard_check_pressed(ord("1"))) selected_char = (selected_char - 1 + array_length(char_options)) % array_length(char_options);
