@@ -103,4 +103,3 @@ else if (!waiting_for_commandmode) {
 
     show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));
 }
-

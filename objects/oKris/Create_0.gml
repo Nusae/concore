@@ -14,3 +14,4 @@ show_debug_message("Ralsei waiting for commandmode initialization...");
 my_name = "Kris";
 current_action = noone; 
 depth = -100;
+visible = true; 

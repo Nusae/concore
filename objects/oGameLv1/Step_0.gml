@@ -38,3 +38,7 @@ if (global.show_fail_window) {
         room_restart(); 
     }
 }
+
+if(global.explode){
+	global.show_fail_window = true;
+}

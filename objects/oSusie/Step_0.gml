@@ -78,8 +78,8 @@ if (global.commandmode && !waiting_for_commandmode) {
 else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(ord("K"));
     var left_key = keyboard_check(ord("H"));
-    var up_key = keyboard_check(ord("J"));
-    var down_key = keyboard_check(ord("U"));
+    var up_key = keyboard_check(ord("U"));
+    var down_key = keyboard_check(ord("J"));
 
     if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
     xspd = (right_key - left_key) * move_spd;
