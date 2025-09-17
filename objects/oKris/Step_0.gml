@@ -78,7 +78,7 @@ if (global.commandmode && !waiting_for_commandmode) {
 else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(vk_right);
     var left_key = keyboard_check(vk_left);
-    var up_key = keyboard_check(vk_up);
+    var up_key = 0;  //keyboard_check(vk_up);
     var down_key = keyboard_check(vk_down);
 
     if (!variable_instance_exists(id, "move_spd")) move_spd = 1;

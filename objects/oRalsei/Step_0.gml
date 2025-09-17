@@ -75,7 +75,7 @@ if (current_action == noone) {
 else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(ord("D"));
     var left_key  = keyboard_check(ord("A"));
-    var up_key    = keyboard_check(ord("S"));
+    var up_key    = 0; //keyboard_check(ord("S"));
     var down_key  = keyboard_check(ord("W"));
 
     if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
