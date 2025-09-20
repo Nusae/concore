@@ -3,5 +3,5 @@ if ( !used && other.keys_golden > 0 ) {
 	global.keys_golden +=1; 
 	used = true; 
 	anim_timer = anim_delay; 
-
+	other.y += 70;
 }

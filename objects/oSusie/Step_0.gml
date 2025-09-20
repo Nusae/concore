@@ -62,9 +62,15 @@ if (global.commandmode && !waiting_for_commandmode) {
 else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(ord("K"));
     var left_key = keyboard_check(ord("H"));
-    var up_key = 0; // keyboard_check(ord("U"));
+    var up_key =  keyboard_check(ord("U"));
     var down_key = keyboard_check(ord("J"));
 
+	var current_room = room_get_name(room);
+	// Desactivar movimiento hacia arriba en salas que no sean Start ni Logic
+	if (current_room != "Start" && current_room != "Logic") {
+	    up_key = 0;
+	}
+	
     if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
     xspd = (right_key - left_key) * move_spd;
     yspd = (down_key - up_key) * move_spd;
@@ -85,13 +91,15 @@ else if (!waiting_for_commandmode) {
     }
 
     // Game state logic
-    if (keys_gray > 1) {
+    if (global.keys_gray > 0) {
+		global.sentado_susie = false; 
         global.sentado_gray = 0;
         movimiento_habilitado = true;
         sprite_index = sSusieDown;
         move_spd = 1;
     }
-    if (keys_golden > 0) {
+    if (global.keys_golden > 0) {
+		global.sentado_susie = false; 
         global.sentado_gold = 0;
         movimiento_habilitado = true;
         sprite_index = sSusieDown;
@@ -102,7 +110,7 @@ else if (!waiting_for_commandmode) {
         sprite_index = sSusieSat;
     }else{ 
 		move_spd = 1; 
-		sprite_index = sSusieDown;
+	//	sprite_index = sSusieDown;
 	}
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 

@@ -11,7 +11,6 @@ if (used) {
     ) {
         solid = true;
     }
-	
 		global.sentado_kris = false; 
 		global.sentado_susie = false; 
 		global.sentado_ralsei = false; 

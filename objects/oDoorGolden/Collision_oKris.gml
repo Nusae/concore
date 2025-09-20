@@ -5,8 +5,8 @@ if (!opened) {
         opened = true;
 		sprite_index = sAuDoorOpened1;
         solid = false;  
+		global.sentado_gold = 0;
     } else {
         global.sentado_kris= true; 
-
     }
 }

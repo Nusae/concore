@@ -62,8 +62,14 @@ if (global.commandmode && !waiting_for_commandmode) {
 else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(vk_right);
     var left_key = keyboard_check(vk_left);
-    var up_key = 0;  //keyboard_check(vk_up);
+    var up_key = keyboard_check(vk_up);
     var down_key = keyboard_check(vk_down);
+	
+	var current_room = room_get_name(room);
+	// Desactivar movimiento hacia arriba en salas que no sean Start ni Logic
+	if (current_room != "Start" && current_room != "Logic") {
+	    up_key = 0;
+	}
 
     if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
     xspd = (right_key - left_key) * move_spd;
@@ -85,13 +91,15 @@ else if (!waiting_for_commandmode) {
     }
 
     // Game state logic
-    if (keys_gray > 1) {
+    if (global.keys_gray > 0) {
+		global.sentado_kris = false; 
         global.sentado_gray = 0;
         movimiento_habilitado = true;
         sprite_index = sKrisDown;
         move_spd = 1;
     }
-    if (keys_golden > 0) {
+    if (global.keys_golden > 0) {
+		global.sentado_kris= false; 
         global.sentado_gold = 0;
         movimiento_habilitado = true;
         sprite_index = sKrisDown;
@@ -102,7 +110,7 @@ else if (!waiting_for_commandmode) {
         sprite_index = sKrisSat;
     }else{ 
 		move_spd = 1; 
-		sprite_index = sKrisDown;
+		//sprite_index = sKrisDown;
 	}
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 

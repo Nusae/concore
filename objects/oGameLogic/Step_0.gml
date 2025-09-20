@@ -31,7 +31,9 @@ if (keyboard_check_pressed(ord("4"))) {
 if (keyboard_check_pressed(ord("8"))) {
     global.show_fail_window = false;
     global.explode = false;
-    room_restart(); 
+	if (instance_exists(oRalsei)) { oRalsei.x = ralsei_start_x; oRalsei.y = ralsei_start_y; }
+    if (instance_exists(oSusie)) { oSusie.x = susie_start_x; oSusie.y = susie_start_y; }
+    if (instance_exists(oKris)) { oKris.x = kris_start_x; oKris.y = kris_start_y; }
 }
 
 

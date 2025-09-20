@@ -66,9 +66,15 @@ if (current_action == noone) {
 else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(ord("D"));
     var left_key  = keyboard_check(ord("A"));
-    var up_key    = 0; //keyboard_check(ord("W"));
+    var up_key    = keyboard_check(ord("W"));
     var down_key  = keyboard_check(ord("S"));
 
+	var current_room = room_get_name(room);
+	// Desactivar movimiento hacia arriba en salas que no sean Start ni Logic
+	if (current_room != "Start" && current_room != "Logic") {
+	    up_key = 0;
+	}
+	
     if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
     xspd = (right_key - left_key) * move_spd;
     yspd = (down_key - up_key) * move_spd;
@@ -87,9 +93,9 @@ else if (!waiting_for_commandmode) {
     y += yspd;
 
     // Estados
-    if (keys_gray > 1) { global.sentado_gray = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
-    if (keys_golden > 0) { global.sentado_gold = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
-    if (global.sentado_ralsei) { move_spd = 0; sprite_index = sRalseiSat; }else{ move_spd = 1; sprite_index = sRalseiDown;}
+    if (global.keys_gray > 0) { global.sentado_ralsei= false;   global.sentado_gray = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
+    if (global.keys_golden > 0) {global.sentado_ralsei= false; global.sentado_gold = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
+    if (global.sentado_ralsei) { move_spd = 0; sprite_index = sRalseiSat; }else{ move_spd = 1; }
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));

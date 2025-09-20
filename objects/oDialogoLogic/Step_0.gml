@@ -8,7 +8,7 @@ if (!finished) {
 }
 
 // Si ya terminó de escribir y el jugador pulsa una tecla → pasa al siguiente diálogo
-if (keyboard_check_pressed(vk_space)) {
+if (keyboard_check_pressed(vk_space)) {  // Cambia a vk_enter si prefieres "intro"
     if (dialog_pos >= string_length(dialog_full)) {
         dialog_index += 1;
         if (dialog_index < array_length(dialogos)) {
@@ -17,10 +17,8 @@ if (keyboard_check_pressed(vk_space)) {
             dialog_pos = 0;
         } else {
             finished = true;
-            // Transición a Lv1 solo desde la sala Start
-            if (room_get_name(room) == "Start") {
-                room_goto(Logic);
-            }
+            // Transición a Lv1 después del tutorial
+            room_goto(Lv1);  // O a donde quieras ir después
         }
     } else {
         // Si presiona espacio antes de terminar, muestra todo de golpe
@@ -29,15 +27,16 @@ if (keyboard_check_pressed(vk_space)) {
     }
 }
 
-// Aparición de personajes en ciertos diálogos (solo para Start)
-if (room_get_name(room) == "Start") {
-    switch(dialog_index) {
-        case 1: show_ralsei = true; break;
-        case 2: show_susie = true; break;
-        case 3: show_kris   = true; break;
-    }
-    // Actualizar visibilidad en tiempo real
-    oRalsei.visible = show_ralsei;
-    oSusie.visible = show_susie;
-    oKris.visible = show_kris;
+switch(dialog_index) {
+    case 8: // Antes de "Ahora prueba a ir a la puerta con Kris"
+        if (instance_exists(oKris)) {
+            global.keys_golden = 1; // Dar llave dorada a Kris
+        }
+        break;
 }
+
+
+// Actualizar visibilidad (por si acaso)
+if (instance_exists(oRalsei)) oRalsei.visible = show_ralsei;
+if (instance_exists(oSusie)) oSusie.visible = show_susie;
+if (instance_exists(oKris)) oKris.visible = show_kris;
