@@ -34,8 +34,7 @@ switch (current_room) {
     case "Lv2":
         dialogos = [
             "Bienvenido al segundo nivel.",
-            "No hay llave general en esta sala",
-            "Pero Kris tiene una",
+            "No hay llave general en esta sala \n Pero Kris tiene una",
             "¿Este es el tipo de problema de sincronización, que vas a hacer?"
         ];
         show_susie = true;

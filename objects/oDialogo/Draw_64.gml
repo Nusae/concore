@@ -1,8 +1,8 @@
 if (!finished) {
-    // Dibujar un borde blanco más grueso usando múltiples rectángulos
+   
     draw_set_color(c_white);
-    // Dibujar varias veces el borde con pequeñas variaciones en las coordenadas para simular grosor
-    var border_thickness = 4; // Ajusta este valor para hacer el borde más o menos grueso
+    
+    var border_thickness = 4; 
     for (var i = 0; i < border_thickness; i++) {
         draw_rectangle(50 - i, display_get_gui_height() - 150 - i, display_get_gui_width() - 50 + i, display_get_gui_height() - 50 + i, true);
     }

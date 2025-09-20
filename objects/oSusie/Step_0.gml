@@ -67,7 +67,7 @@ else if (!waiting_for_commandmode) {
 
 	var current_room = room_get_name(room);
 	// Desactivar movimiento hacia arriba en salas que no sean Start ni Logic
-	if (current_room != "Start" && current_room != "Logic") {
+	if (current_room != "Start" && current_room != "Logic" && current_room != "Editorlv") {
 	    up_key = 0;
 	}
 	
