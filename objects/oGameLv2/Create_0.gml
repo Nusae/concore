@@ -11,5 +11,4 @@ oKris.keys_golden = 1;
 oKris.keys_gray = 0;
 oSusie.keys_golden = 0; 
 oSusie.keys_gray = 0;
-oRalsei.keys_golden = 0; 
-oRalsei.keys_gray = 0;
+global.explode = false; 

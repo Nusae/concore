@@ -7,6 +7,5 @@ if (!opened) {
         solid = false;  
     } else {
         global.sentado_ralsei= true; 
-		other.movimiento_habilitado = false; 
     }
 }

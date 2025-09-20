@@ -7,6 +7,6 @@ if (!opened) {
         solid = false;  
     } else {
         global.sentado_kris= true; 
-		other.movimiento_habilitado = false; 
+
     }
 }

@@ -10,23 +10,7 @@ if (waiting_for_commandmode) {
             target_x = x;
             target_y = y;
             current_action = noone;
-            my_name = "Kris";
-            xspd = 0;
-            yspd = 0;
-            move_spd = 1;
-            has_key = false;
-            keys_gray = 0;
-            keys_golden = 0;
-            movimiento_habilitado = true; // Initialize to fix previous error
-        } else {
-            xspd = 0;
-            yspd = 0;
-            move_spd = 1;
-            has_key = false;
-            keys_gray = 0;
-            keys_golden = 0;
-            movimiento_habilitado = true; // Initialize to fix previous error
-        }
+		}
         waiting_for_commandmode = false;
     } else {
         show_debug_message("Waiting for commandmode to initialize...");
@@ -116,7 +100,10 @@ else if (!waiting_for_commandmode) {
     if (global.sentado_kris) {
         move_spd = 0;
         sprite_index = sKrisSat;
-    }
+    }else{ 
+		move_spd = 1; 
+		sprite_index = sKrisDown;
+	}
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     if (xspd != 0 || yspd != 0) {

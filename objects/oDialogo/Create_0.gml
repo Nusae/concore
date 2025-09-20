@@ -38,7 +38,6 @@ switch (current_room) {
             "Pero Kris tiene una",
             "¿Este es el tipo de problema de sincronización, que vas a hacer?"
         ];
-        show_ralsei = true;
         show_susie = true;
         show_kris = true;
         break;

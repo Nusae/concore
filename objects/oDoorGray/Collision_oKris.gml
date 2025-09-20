@@ -8,7 +8,5 @@ if (!opened) {
 		global.sentado_gray = 0;
     } else {
         global.sentado_kris = true; 
-		other.movimiento_habilitado = false; 
-		
     }
 }

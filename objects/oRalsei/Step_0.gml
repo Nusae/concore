@@ -2,7 +2,7 @@
 
 show_debug_message("Step running for Ralsei, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
 
-/// --- Inicialización ---
+// --- Initialization ---
 if (waiting_for_commandmode) {
     if (variable_global_exists("commandmode")) {
         show_debug_message("Command mode initialized: " + string(global.commandmode));
@@ -11,16 +11,7 @@ if (waiting_for_commandmode) {
             target_x = x;
             target_y = y;
             current_action = noone;
-            my_name = "Ralsei";
-			movimiento_habilitado = true;
-        } else {
-            xspd = 0; yspd = 0;
-            move_spd = 1;
-            has_key = false;
-            keys_golden = 0;
-            keys_gray = 0;
-            movimiento_habilitado = true;
-        }
+		}
         waiting_for_commandmode = false;
     } else {
         show_debug_message("Waiting for commandmode to initialize...");
@@ -75,8 +66,8 @@ if (current_action == noone) {
 else if (!waiting_for_commandmode) {
     var right_key = keyboard_check(ord("D"));
     var left_key  = keyboard_check(ord("A"));
-    var up_key    = 0; //keyboard_check(ord("S"));
-    var down_key  = keyboard_check(ord("W"));
+    var up_key    = 0; //keyboard_check(ord("W"));
+    var down_key  = keyboard_check(ord("S"));
 
     if (!variable_instance_exists(id, "move_spd")) move_spd = 1;
     xspd = (right_key - left_key) * move_spd;
@@ -98,7 +89,7 @@ else if (!waiting_for_commandmode) {
     // Estados
     if (keys_gray > 1) { global.sentado_gray = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
     if (keys_golden > 0) { global.sentado_gold = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
-    if (global.sentado_ralsei) { move_spd = 0; sprite_index = sRalseiSat; }
+    if (global.sentado_ralsei) { move_spd = 0; sprite_index = sRalseiSat; }else{ move_spd = 1; sprite_index = sRalseiDown;}
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));
