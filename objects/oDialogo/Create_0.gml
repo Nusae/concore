@@ -11,7 +11,7 @@ dialogos = []; // Inicializar vacío
 switch (current_room) {
     case "Start":
         dialogos = [
-            "Buenas a todos, hoy presentare unos temas de concurrencia,",
+            "Buenas a todos, hoy presentare unos temas de concurrencia(barra de espacio, siguiente texto)",
             "Yo soy Ralsei me muevo con WASD",
             "Yo soy Susie me muevo con UHJK",
             "Y finalmente yo, Kris me muevo con las flechas",
@@ -25,7 +25,7 @@ switch (current_room) {
     
     case "Lv1":
         dialogos = [
-            "Hemos de pasar por los niveles, pero hay ciertas normas; \nsolo puede haber una persona encima del boton,\n y hasta 2 en los switches sino explota.",
+            "Hemos de pasar por los niveles.",
             "Se puede elegir la cantidad de color de llaves con: \n 1:Añadir una llave dorada    2:Eliminar una llave dorada\n 3:Añadir una llave gris      4:Eliminar una llave gris \n",
 			"¡Busca la opción más óptima!",
             "¡Llega a las metas y gana!",
