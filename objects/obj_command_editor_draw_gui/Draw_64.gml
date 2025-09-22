@@ -10,8 +10,16 @@ draw_rectangle(gui_x, gui_y, gui_x + gui_width, gui_y + gui_height, false);
 
 // Opciones para los dropdowns
 var char_options = ["Ralsei", "Kris", "Susie"];
-var action_options = ["move_to"];
-var target_options = ["Wall", "Button", "Switch", "Ralsei", "Kris", "Susie", "Meta","GoldS", "GrayS", "GoldD", "GrayD"];
+var action_options = ["move_to", "delay"];
+var target_options = selected_action == 1 ? ["1s", "2s", "5s", "1s", "2s", "5s", "1s", "2s", "5s", "1s", "2s"] : ["Wall", "Button", "Switch", "Ralsei", "Kris", "Susie", "Meta", "GoldS", "GrayS", "GoldD", "GrayD"];
+
+
+// Detect action change to reset selected_target
+var prev_action = variable_instance_exists(id, "prev_action") ? prev_action : selected_action;
+if (prev_action != selected_action) {
+    selected_target = 0; // Reset target when action changes
+    prev_action = selected_action;
+}
 
 // Control por teclas
 if (keyboard_check_pressed(ord("1"))) selected_char = (selected_char - 1 + array_length(char_options)) % array_length(char_options);
@@ -25,7 +33,7 @@ if (keyboard_check_pressed(ord("6"))) selected_target = (selected_target + 1) % 
 draw_set_color(c_black);
 draw_text(gui_x + 10, gui_y + 10, "Personaje: " + char_options[selected_char] + " <1 2>");
 draw_text(gui_x + 10, gui_y + 40, "Acción: " + action_options[selected_action] + " <3 4>");
-draw_text(gui_x + 10, gui_y + 70, "Target: " + target_options[selected_target] + " <5 6>");
+draw_text(gui_x + 10, gui_y + 70, "Target: " + (selected_target < array_length(target_options) ? target_options[selected_target] : "") + " <5 6>");
 
 // Añadir comando con Enter (solo escribe, NO ejecuta)
 if (keyboard_check_pressed(vk_enter)) {

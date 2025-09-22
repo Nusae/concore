@@ -18,20 +18,22 @@ if (waiting_for_commandmode) {
     }
 }
 
-// --- Command Mode ---
+/// @description Character Step event (e.g., for oRalsei, oKris, oSusie)
 if (global.commandmode && !waiting_for_commandmode) {
     if (current_action == noone) {
-        // Ensure the command map exists
+        // Asegurarse de que el mapa existe
         if (!variable_global_exists("char_commands")) global.char_commands = ds_map_create();
 
         if (ds_map_exists(global.char_commands, my_name)) {
             var cmd_list = global.char_commands[? my_name];
             if (cmd_list != undefined && ds_list_size(cmd_list) > 0) {
                 current_action = cmd_list[| 0];
-                show_debug_message("Executing next action: " + current_action.action + " " + string(current_action.target));
+                show_debug_message("Executing next action: " + current_action.action + " " + current_action.target);
 
                 if (current_action.action == "move_to") {
                     handle_move_to(self, current_action);
+                } else if (current_action.action == "delay") {
+                    // Delay is handled in the next block; don't remove the command yet
                 } else {
                     show_debug_message("Unsupported action, skipping");
                     current_action = noone;
@@ -40,20 +42,32 @@ if (global.commandmode && !waiting_for_commandmode) {
         }
     }
 
-    // Check if the path is complete
-    if (current_action != noone && current_action.action == "move_to") {
-        if (path_index == -1) { // Reached the end of the path
-            show_debug_message(my_name + " reached target: " + string(current_action.target));
-            
-            // Remove completed command
-            with (obj_command_controller) {
-                if (variable_global_exists("char_commands") && ds_map_exists(global.char_commands, other.my_name)) {
-                    var cmd_list = global.char_commands[? other.my_name];
-                    if (ds_list_size(cmd_list) > 0) ds_list_delete(cmd_list, 0);
+    // Handle ongoing actions
+    if (current_action != noone) {
+        if (current_action.action == "move_to") {
+            if (path_index == -1) { // Llegó al final del path
+                show_debug_message(my_name + " reached target: " + string(current_action.target));
+                
+                // Eliminar comando completado de la lista
+                with (obj_command_controller) {
+                    if (variable_global_exists("char_commands") && ds_map_exists(global.char_commands, other.my_name)) {
+                        var cmd_list = global.char_commands[? other.my_name];
+                        if (ds_list_size(cmd_list) > 0) ds_list_delete(cmd_list, 0);
+                    }
+                }
+                current_action = noone;
+            }
+        } else if (current_action.action == "delay") {
+            current_action = handle_delay(self, current_action);
+            if (current_action == noone) {
+                // Delay completed, remove from command list
+                with (obj_command_controller) {
+                    if (variable_global_exists("char_commands") && ds_map_exists(global.char_commands, other.my_name)) {
+                        var cmd_list = global.char_commands[? other.my_name];
+                        if (ds_list_size(cmd_list) > 0) ds_list_delete(cmd_list, 0);
+                    }
                 }
             }
-
-            current_action = noone;
         }
     }
 }
