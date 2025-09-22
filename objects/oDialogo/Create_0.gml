@@ -1,6 +1,11 @@
 // Determinar el diálogo basado en la sala actual
 var current_room = room_get_name(room);
 
+// Initialize global.lv3_dialogue_completed when entering Lv3 for the first time
+if (current_room == "Lv3" && !variable_global_exists("lv3_dialogue_completed")) {
+    global.lv3_dialogue_completed = false; // Only initialize if not already set
+}
+
 dialogos = []; // Inicializar vacío
 
 switch (current_room) {
@@ -41,12 +46,18 @@ switch (current_room) {
         show_kris = true;
         break;
     
-    case "Lv3":
-        dialogos = [
-            "Aparece en la tercera sala",
-            "Piensa antes de actuar",
-            "Este es un problema muy típico; ¡Interbloqueo!"
-        ];
+	case "Lv3":
+        if (!global.lv3_dialogue_completed) {
+            dialogos = [
+                "Has los siguientes pasos:\n Primero que todos lleguen a su primera puerta", 
+                "Ahora has que lleguen a la segunda puerta", 
+                "Este es el concepto de interbloqueo.", 
+                "Ahora prueba a llegar al final sin bloquearte."
+            ];
+        } else {
+            dialogos = []; // No dialogue if completed
+            finished = true; // Skip dialogue display
+        }
         show_ralsei = true;
         show_susie = true;
         show_kris = true;
@@ -66,7 +77,7 @@ dialog_index = 0;
 
 // control de escritura tipo Undertale (una letra a la vez)
 dialog_text = "";
-dialog_full = dialogos[dialog_index];
+dialog_full = (array_length(dialogos) > 0) ? dialogos[dialog_index] : "";
 dialog_pos = 0;
 dialog_speed = 2; // menor = más rápido
 dialog_timer = 0;

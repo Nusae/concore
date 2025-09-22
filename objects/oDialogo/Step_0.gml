@@ -1,3 +1,5 @@
+
+
 if (!finished) {
     dialog_timer += 1;
     if (dialog_timer >= dialog_speed && dialog_pos < string_length(dialog_full)) {
@@ -40,4 +42,12 @@ if (room_get_name(room) == "Start") {
     oRalsei.visible = show_ralsei;
     oSusie.visible = show_susie;
     oKris.visible = show_kris;
+}
+
+if (room_get_name(room) == "Lv3") {
+    switch(dialog_index) {
+        case 4: room_restart(); global.lv3_dialogue_completed = true;
+		
+    }
+
 }
