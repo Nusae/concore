@@ -151,3 +151,19 @@ if (global.sentado_kris) {
 		move_spd = 1; 
 		//sprite_index = sKrisDown;
 }
+
+    // Game state logic
+    if (global.keys_gray > 0) {
+		global.sentado_kris = false; 
+        global.sentado_gray = 0;
+        movimiento_habilitado = true;
+        sprite_index = sKrisDown;
+        move_spd = 1;
+    }
+    if (global.keys_golden > 0) {
+		global.sentado_kris= false; 
+        global.sentado_gold = 0;
+        movimiento_habilitado = true;
+        sprite_index = sKrisDown;
+        move_spd = 1;
+    }

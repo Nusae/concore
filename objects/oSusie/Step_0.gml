@@ -129,22 +129,6 @@ else if (!waiting_for_commandmode) {
         x += xspd;
         y += yspd;
     }
-
-    // Game state logic
-    if (global.keys_gray > 0) {
-		global.sentado_susie = false; 
-        global.sentado_gray = 0;
-        movimiento_habilitado = true;
-        sprite_index = sSusieDown;
-        move_spd = 1;
-    }
-    if (global.keys_golden > 0) {
-		global.sentado_susie = false; 
-        global.sentado_gold = 0;
-        movimiento_habilitado = true;
-        sprite_index = sSusieDown;
-        move_spd = 1;
-    }
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     if (xspd != 0 || yspd != 0) {
@@ -159,3 +143,19 @@ else if (!waiting_for_commandmode) {
 		move_spd = 1; 
 	//	sprite_index = sSusieDown;
 	}
+	
+	    // Game state logic
+    if (global.keys_gray > 0) {
+		global.sentado_susie = false; 
+        global.sentado_gray = 0;
+        movimiento_habilitado = true;
+        sprite_index = sSusieDown;
+        move_spd = 1;
+    }
+    if (global.keys_golden > 0) {
+		global.sentado_susie = false; 
+        global.sentado_gold = 0;
+        movimiento_habilitado = true;
+        sprite_index = sSusieDown;
+        move_spd = 1;
+    }
