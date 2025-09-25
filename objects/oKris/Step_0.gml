@@ -44,8 +44,27 @@ if (global.commandmode && !waiting_for_commandmode) {
 
     // Handle ongoing actions
     if (current_action != noone) {
-        if (current_action.action == "move_to") {
-            if (path_index == -1) { // Llegó al final del path
+	 if (current_action.action == "move_to") {
+            
+        var target_index = asset_get_index("o" + current_action.target);
+            if (object_exists(target_index)) {
+                var nearby = instance_nearest(x, y, target_index);
+                if (nearby != noone) {
+                    var dist_blocks = point_distance(x, y, nearby.x, nearby.y) / 32;
+                    if (dist_blocks <= 30) {
+                        // Solo redirigir si el target encontrado NO es el que ya estaba persiguiendo
+                        if (!variable_instance_exists(nearby, "already_checked") || nearby != current_action.target_instance) {
+                            show_debug_message(my_name + " redirigiendo a un target más cercano (" + string(nearby.x) + ", " + string(nearby.y) + ")");
+                            path_end();
+                            current_action.target_instance = nearby.id;
+                            handle_move_to(self, current_action);
+                        }
+                    }
+                }
+            }
+            
+            // Finalizar acción si llegó al destino
+            if (path_index == -1) {
                 show_debug_message(my_name + " reached target: " + string(current_action.target));
                 
                 // Eliminar comando completado de la lista

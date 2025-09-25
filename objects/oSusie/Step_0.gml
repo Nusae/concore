@@ -44,8 +44,34 @@ if (global.commandmode && !waiting_for_commandmode) {
 
     // Handle ongoing actions
     if (current_action != noone) {
-        if (current_action.action == "move_to") {
-            if (path_index == -1) { // Llegó al final del path
+       if (current_action.action == "move_to") {
+            
+            // --- Verificación dinámica de targets ---
+            var target_index = asset_get_index("o" + current_action.target);
+            if (object_exists(target_index)) {
+                var nearby = instance_nearest(x, y, target_index);
+                if (nearby != noone) {
+                    var dist_blocks = point_distance(x, y, nearby.x, nearby.y) / 32;
+
+                    // ✅ Si ya estoy en el target → no hago nada
+                    if (variable_struct_exists(current_action, "target_instance") 
+                        && nearby == current_action.target_instance 
+                        && dist_blocks < 1) {
+                        show_debug_message(my_name + " ya está encima del target, no se hace nada.");
+                    }
+                    // ✅ Si hay otro target válido más cercano → redirigir
+                    else if (dist_blocks <= 30 && (!variable_struct_exists(current_action, "target_instance") 
+                           || nearby != current_action.target_instance)) {
+                        show_debug_message(my_name + " redirigiendo a un target más cercano (" 
+                                           + string(nearby.x) + ", " + string(nearby.y) + ")");
+                        path_end();
+                        current_action.target_instance = nearby.id;
+                        handle_move_to(self, current_action);
+                    }
+                }
+            }
+            // Finalizar acción si llegó al destino
+            if (path_index == -1) {
                 show_debug_message(my_name + " reached target: " + string(current_action.target));
                 
                 // Eliminar comando completado de la lista
@@ -56,7 +82,7 @@ if (global.commandmode && !waiting_for_commandmode) {
                     }
                 }
                 current_action = noone;
-            }
+            } 
         } else if (current_action.action == "delay") {
             current_action = handle_delay(self, current_action);
             if (current_action == noone) {
