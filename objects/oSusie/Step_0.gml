@@ -96,6 +96,7 @@ if (global.commandmode && !waiting_for_commandmode) {
             }
         }
     }
+	if( movimiento_habilitado){ sprite_index = sRalseiDown }
 }
 
 // --- User Movement Mode ---
@@ -149,13 +150,11 @@ else if (!waiting_for_commandmode) {
 		global.sentado_susie = false; 
         global.sentado_gray = 0;
         movimiento_habilitado = true;
-        sprite_index = sSusieDown;
         move_spd = 1;
     }
     if (global.keys_golden > 0) {
 		global.sentado_susie = false; 
         global.sentado_gold = 0;
         movimiento_habilitado = true;
-        sprite_index = sSusieDown;
         move_spd = 1;
     }

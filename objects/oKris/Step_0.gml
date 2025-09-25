@@ -89,6 +89,8 @@ if (global.commandmode && !waiting_for_commandmode) {
             }
         }
     }
+	
+	if( movimiento_habilitado){ sprite_index = sKrisDown }
 }
 // --- User Movement Mode ---
 else if (!waiting_for_commandmode) {
@@ -122,21 +124,6 @@ else if (!waiting_for_commandmode) {
         y += yspd;
     }
 
-    // Game state logic
-    if (global.keys_gray > 0) {
-		global.sentado_kris = false; 
-        global.sentado_gray = 0;
-        movimiento_habilitado = true;
-        sprite_index = sKrisDown;
-        move_spd = 1;
-    }
-    if (global.keys_golden > 0) {
-		global.sentado_kris= false; 
-        global.sentado_gold = 0;
-        movimiento_habilitado = true;
-        sprite_index = sKrisDown;
-        move_spd = 1;
-    }
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     if (xspd != 0 || yspd != 0) {
@@ -157,13 +144,11 @@ if (global.sentado_kris) {
 		global.sentado_kris = false; 
         global.sentado_gray = 0;
         movimiento_habilitado = true;
-        sprite_index = sKrisDown;
         move_spd = 1;
     }
     if (global.keys_golden > 0) {
 		global.sentado_kris= false; 
         global.sentado_gold = 0;
         movimiento_habilitado = true;
-        sprite_index = sKrisDown;
         move_spd = 1;
     }
