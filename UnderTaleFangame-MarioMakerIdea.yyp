@@ -116,9 +116,9 @@
   "resourceType":"GMProject",
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
-    {"roomId":{"name":"Logic","path":"rooms/Logic/Logic.yy",},},
-    {"roomId":{"name":"Start","path":"rooms/Start/Start.yy",},},
     {"roomId":{"name":"Lv5","path":"rooms/Lv5/Lv5.yy",},},
+    {"roomId":{"name":"Start","path":"rooms/Start/Start.yy",},},
+    {"roomId":{"name":"Logic","path":"rooms/Logic/Logic.yy",},},
     {"roomId":{"name":"Editorlv","path":"rooms/Editorlv/Editorlv.yy",},},
     {"roomId":{"name":"Lv2","path":"rooms/Lv2/Lv2.yy",},},
     {"roomId":{"name":"Lv3","path":"rooms/Lv3/Lv3.yy",},},

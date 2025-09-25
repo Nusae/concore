@@ -3,6 +3,6 @@ if ( !used   && other.keys_gray > 0) {
 	global.keys_gray += 1; 
 	used = true; 
 	anim_timer = anim_delay;
-	if(global.commandmode){ other.y += 70;}
+	if(!global.commandmode){ other.y += 70;}
 }
 
