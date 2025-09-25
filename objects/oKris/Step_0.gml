@@ -118,16 +118,17 @@ else if (!waiting_for_commandmode) {
         sprite_index = sKrisDown;
         move_spd = 1;
     }
-    if (global.sentado_kris) {
-        move_spd = 0;
-        sprite_index = sKrisSat;
-    }else{ 
-		move_spd = 1; 
-		//sprite_index = sKrisDown;
-	}
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     if (xspd != 0 || yspd != 0) {
         show_debug_message("Kris moved manually to: " + string(x) + ", " + string(y));
     }
+}
+
+if (global.sentado_kris) {
+        move_spd = 0;
+        sprite_index = sKrisSat;
+    }else{ 
+		move_spd = 1; 
+		//sprite_index = sKrisDown;
 }

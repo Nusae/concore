@@ -1,3 +1,4 @@
+draw_set_font(fnt_espanol); 
 if (!finished) {
     // Dibujar un borde blanco más grueso usando múltiples rectángulos
     draw_set_color(c_white);

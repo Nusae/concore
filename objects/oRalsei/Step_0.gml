@@ -104,11 +104,35 @@ else if (!waiting_for_commandmode) {
     x += xspd;
     y += yspd;
 
-    // Estados
-    if (global.keys_gray > 0) { global.sentado_ralsei= false;   global.sentado_gray = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
-    if (global.keys_golden > 0) {global.sentado_ralsei= false; global.sentado_gold = 0; movimiento_habilitado = true; sprite_index = sRalseiDown; move_spd = 1; }
-    if (global.sentado_ralsei) { move_spd = 0; sprite_index = sRalseiSat; }else{ move_spd = 1; }
-    if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
+	    // Estados
+	if (global.keys_gray > 0) {
+	    global.sentado_ralsei = false;
+	    global.sentado_gray = 0;
+	    movimiento_habilitado = true;
+	    sprite_index = sRalseiDown;
+	    move_spd = 1;
+	}
 
-    show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));
+	if (global.keys_golden > 0) {
+	    global.sentado_ralsei = false;
+	    global.sentado_gold = 0;
+	    movimiento_habilitado = true;
+	    sprite_index = sRalseiDown;
+	    move_spd = 1;
+	}
+	
+	if(!global.sentado_ralsei){   sprite_index = sRalseiDown; }
+
+	if (instance_exists(oPlayButton)) {
+	    move_spd = oPlayButton.playmode ? 1 : 0;
+	}
+
+	show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));
+}
+
+if (global.sentado_ralsei) {
+    move_spd = 0;
+    sprite_index = sRalseiSat;
+} else {
+    move_spd = 1;
 }

@@ -119,6 +119,13 @@ else if (!waiting_for_commandmode) {
         sprite_index = sSusieDown;
         move_spd = 1;
     }
+    if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
+
+    if (xspd != 0 || yspd != 0) {
+        show_debug_message("Susie moved manually to: " + string(x) + ", " + string(y));
+    }
+}
+
     if (global.sentado_susie) {
         move_spd = 0;
         sprite_index = sSusieSat;
@@ -126,9 +133,3 @@ else if (!waiting_for_commandmode) {
 		move_spd = 1; 
 	//	sprite_index = sSusieDown;
 	}
-    if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
-
-    if (xspd != 0 || yspd != 0) {
-        show_debug_message("Susie moved manually to: " + string(x) + ", " + string(y));
-    }
-}
