@@ -61,6 +61,7 @@
     {"id":{"name":"oSaverLv","path":"objects/oSaverLv/oSaverLv.yy",},},
     {"id":{"name":"oSusie","path":"objects/oSusie/oSusie.yy",},},
     {"id":{"name":"oSwitch","path":"objects/oSwitch/oSwitch.yy",},},
+    {"id":{"name":"oViewpoint","path":"objects/oViewpoint/oViewpoint.yy",},},
     {"id":{"name":"oWall","path":"objects/oWall/oWall.yy",},},
     {"id":{"name":"ds","path":"rooms/ds/ds.yy",},},
     {"id":{"name":"Editorlv","path":"rooms/Editorlv/Editorlv.yy",},},

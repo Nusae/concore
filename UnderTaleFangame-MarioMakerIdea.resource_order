@@ -42,6 +42,7 @@
     {"name":"oSaverLv","order":14,"path":"objects/oSaverLv/oSaverLv.yy",},
     {"name":"oSusie","order":4,"path":"objects/oSusie/oSusie.yy",},
     {"name":"oSwitch","order":5,"path":"objects/oSwitch/oSwitch.yy",},
+    {"name":"oViewpoint","order":26,"path":"objects/oViewpoint/oViewpoint.yy",},
     {"name":"oWall","order":1,"path":"objects/oWall/oWall.yy",},
     {"name":"ds","order":6,"path":"rooms/ds/ds.yy",},
     {"name":"Editorlv","order":4,"path":"rooms/Editorlv/Editorlv.yy",},

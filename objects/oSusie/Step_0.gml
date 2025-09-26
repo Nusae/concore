@@ -96,7 +96,7 @@ if (global.commandmode && !waiting_for_commandmode) {
             }
         }
     }
-	if( movimiento_habilitado){ sprite_index = sRalseiDown }
+	if( movimiento_habilitado){ sprite_index = sSusieDown }
 }
 
 // --- User Movement Mode ---
