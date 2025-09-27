@@ -15,6 +15,7 @@ switch (current_room) {
             "Yo soy Ralsei me muevo con WASD",
             "Yo soy Susie me muevo con UHJK",
             "Y finalmente yo, Kris me muevo con las flechas",
+			"Z,X,C permite hacer cambio de viewpoints",
         ];
         // En Start, personajes aparecen progresivamente
         show_ralsei = false;

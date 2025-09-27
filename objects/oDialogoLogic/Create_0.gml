@@ -6,7 +6,7 @@ dialogos = [
     "Con 2 personas, se mueve más rápido.",  
     "¡Pero con 3, explota! Cuidado en los niveles reales.", 
     "Ahora, el botón: Solo puede haber una persona encima.",  
-    "Si pones más de una, explota.",  
+    "Si pones más de una, explota. /n Usaremos el objeto del mismo tipo comparten contador.",  
     "Finalmente, las puertas: Requieren llaves doradas o grises para abrirse.",
     "Por ejemplo, una puerta dorada necesita una llave dorada.\n En general en la parte de arriba izquierda",  
 	"Ahora prueba a ir a la puerta con Kris", 
