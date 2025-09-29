@@ -1,3 +1,7 @@
 opened = false; 
-solid = true;
 my_name = "GrayD";
+
+timer = 0;
+pressed = false;
+completed = false;
+solid = false; 

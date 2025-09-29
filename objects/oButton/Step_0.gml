@@ -20,7 +20,8 @@ else if (global.counter_button >= 2) {
     global.show_fail_window = true;
 }
 
-if (place_meeting(x, y, oSusie)) {
+// Verificar si hay algún personaje encima (oKris, oRalsei, oSusie)
+if (place_meeting(x, y, oKris) || place_meeting(x, y, oRalsei) || place_meeting(x, y, oSusie)) {
     if (!pressed) {
         pressed = true;
         timer = 0;

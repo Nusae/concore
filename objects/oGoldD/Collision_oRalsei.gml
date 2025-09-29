@@ -1,11 +1,14 @@
-if (!opened) {
-    if (global.keys_golden > 0) {
-        other.keys_golden += 1;
-		global.keys_golden -= 1; 
-        opened = true;
-		sprite_index = sAuDoorOpened1;
-        solid = false;  
-    } else {
-        global.sentado_ralsei= true; 
+timer += 1;
+
+if (timer >= room_speed * 3) {
+    if (!opened) {
+        if (global.keys_golden > 0) {
+            other.keys_golden += 1;
+            global.keys_golden -= 1; 
+            opened = true;
+            sprite_index = sAuDoorOpened; 
+        } else {
+            global.sentado_ralsei = true; 
+        }
     }
 }

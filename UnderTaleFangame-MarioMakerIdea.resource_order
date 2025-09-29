@@ -58,7 +58,7 @@
     {"name":"parse_comand","order":1,"path":"scripts/parse_comand/parse_comand.yy",},
     {"name":"scr_reset_level","order":3,"path":"scripts/scr_reset_level/scr_reset_level.yy",},
     {"name":"sAuDoorClosed","order":20,"path":"sprites/sAuDoorClosed/sAuDoorClosed.yy",},
-    {"name":"sAuDoorOpened1","order":21,"path":"sprites/sAuDoorOpened1/sAuDoorOpened1.yy",},
+    {"name":"sAuDoorOpened","order":21,"path":"sprites/sAuDoorOpened/sAuDoorOpened.yy",},
     {"name":"sBoom","order":11,"path":"sprites/sBoom/sBoom.yy",},
     {"name":"sButtonPressed","order":10,"path":"sprites/sButtonPressed/sButtonPressed.yy",},
     {"name":"sButtonUnPressed","order":9,"path":"sprites/sButtonUnPressed/sButtonUnPressed.yy",},
