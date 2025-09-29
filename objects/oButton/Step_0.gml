@@ -19,3 +19,22 @@ else if (global.counter_button >= 2) {
     show_debug_message("¡BOOM! Demasiados procesos.");
     global.show_fail_window = true;
 }
+
+if (place_meeting(x, y, oSusie)) {
+    if (!pressed) {
+        pressed = true;
+        timer = 0;
+    } else {
+        timer += 1;
+    }
+} else {
+    pressed = false;
+    timer = 0;
+}
+
+// Verificar si la tarea está completada
+if (!completed && timer >= required_time) {
+    completed = true;
+    sprite_index = sButtonUnPressed;
+    show_debug_message("Botón completado después de " + string(required_time / room_speed) + " segundos");
+}
