@@ -12,6 +12,7 @@ if (global.counter_button == 0) {
 } 
 else if (global.counter_button == 1) {
     sprite_index = sButtonPressed;
+	completed = true; 
 } 
 else if (global.counter_button >= 2) {
     sprite_index = sBoom;
@@ -21,21 +22,24 @@ else if (global.counter_button >= 2) {
 }
 
 // Verificar si hay algún personaje encima (oKris, oRalsei, oSusie)
-if (place_meeting(x, y, oKris) || place_meeting(x, y, oRalsei) || place_meeting(x, y, oSusie)) {
-    if (!pressed) {
-        pressed = true;
-        timer = 0;
-    } else {
-        timer += 1;
-    }
-} else {
-    pressed = false;
-    timer = 0;
-}
+if(global.commandmode){
+	
+	if (place_meeting(x, y, oKris) || place_meeting(x, y, oRalsei) || place_meeting(x, y, oSusie)) {
+	    if (!pressed) {
+	        pressed = true;
+	        timer = 0;
+	    } else {
+	        timer += 1;
+	    }
+	} else {
+	    pressed = false;
+	    timer = 0;
+	}
 
-// Verificar si la tarea está completada
-if (!completed && timer >= required_time) {
-    completed = true;
-    sprite_index = sButtonUnPressed;
-    show_debug_message("Botón completado después de " + string(required_time / room_speed) + " segundos");
+	// Verificar si la tarea está completada
+	if (!completed && timer >= required_time) {
+	    completed = true;
+	    sprite_index = sButtonUnPressed;
+	    show_debug_message("Botón completado después de " + string(required_time / room_speed) + " segundos");
+	}
 }

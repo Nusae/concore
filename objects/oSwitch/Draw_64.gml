@@ -1,3 +1,4 @@
+
 // Dibujar el texto al lado del botón
 var texto = (completed) ? "Hecho" : "No hecho";
 var offset_x = 40; // Ajusta la distancia horizontal del texto
