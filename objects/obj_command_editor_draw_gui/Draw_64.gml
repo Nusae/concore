@@ -1,4 +1,4 @@
-/// @description Draw command editor with dropdowns and key controls
+/// @description Draw command editor with dropdowns, key controls, and times box
 var gui_width = 250;  // Tamaño ajustado
 var gui_height = 130; // Tamaño ajustado
 var gui_x = 40;       // Posición fija a la izquierda
@@ -12,7 +12,6 @@ draw_rectangle(gui_x, gui_y, gui_x + gui_width, gui_y + gui_height, false);
 var char_options = ["Ralsei", "Kris", "Susie"];
 var action_options = ["move_to", "delay"];
 var target_options = selected_action == 1 ? ["1s", "2s", "5s", "1s", "2s", "5s", "1s", "2s", "5s", "1s", "2s"] : ["Wall", "Button", "Switch", "Ralsei", "Kris", "Susie", "Meta", "GoldS", "GrayS", "GoldD", "GrayD"];
-
 
 // Detect action change to reset selected_target
 var prev_action = variable_instance_exists(id, "prev_action") ? prev_action : selected_action;
@@ -93,10 +92,42 @@ if (variable_instance_exists(id, "commands_susie")) {
     }
 }
 
+// Nueva caja de tiempos (debajo de las listas de comandos)
+var times_box_y = 30 + box_height + 20; // 20 píxeles debajo de las cajas de comandos
+var times_box_height = 120; // Aumentado para evitar que el texto se corte
+draw_set_color(c_gray);
+draw_rectangle(right_x, times_box_y, right_x + 3 * column_width, times_box_y + times_box_height, false);
+
+// Set color to black
+draw_set_color(c_black);
+
+// Set bold font for "TIEMPOS:"
+if (asset_get_index("fnt_bold") != -1) {
+    draw_set_font(asset_get_index("fnt_bold"));
+} else {
+    draw_set_font(-1); // Fallback to default font
+    show_debug_message("Warning: fnt_bold not found, using default font.");
+}
+
+// Draw "TIEMPOS:" in bold
+draw_text(right_x + 10, times_box_y + 10, "TIEMPOS:");
+
+// Set normal font for the rest
+if (asset_get_index("fnt_espanol") != -1) {
+    draw_set_font(asset_get_index("fnt_espanol"));
+} else {
+    draw_set_font(-1); // Fallback to default font
+    show_debug_message("Warning: fnt_espanol not found, using default font.");
+}
+
+// Draw the time values with normal font
+draw_text(right_x + 10, times_box_y + 30, "BOTON: 2");
+draw_text(right_x + 10, times_box_y + 50, "PUERTA: 3");
+draw_text(right_x + 10, times_box_y + 70, "SAVER: 2");
+draw_text(right_x + 10, times_box_y + 90, "SWITCH: 1");
+
 // Restablece color
 draw_set_color(c_white);
-
-
 /// @description Handle Alt for simulation start
 if (keyboard_check_pressed(vk_alt)) {
     global.commandmode = !global.commandmode;
@@ -123,5 +154,28 @@ if (keyboard_check_pressed(vk_alt)) {
     } else {
         show_debug_message("Command mode deactivated with Alt");
         if (instance_exists(oPlayButton)) oPlayButton.playmode = false;
+    }
+}
+
+if (keyboard_check(vk_control) && keyboard_check_pressed(ord("Z"))) {
+    switch (selected_char) {
+        case 0:
+            if (variable_instance_exists(id, "commands_ralsei") && array_length(commands_ralsei) > 0) {
+                array_delete(commands_ralsei, array_length(commands_ralsei)-1, 1);
+                show_debug_message("Último comando de Ralsei eliminado");
+            }
+            break;
+        case 1:
+            if (variable_instance_exists(id, "commands_kris") && array_length(commands_kris) > 0) {
+                array_delete(commands_kris, array_length(commands_kris)-1, 1);
+                show_debug_message("Último comando de Kris eliminado");
+            }
+            break;
+        case 2:
+            if (variable_instance_exists(id, "commands_susie") && array_length(commands_susie) > 0) {
+                array_delete(commands_susie, array_length(commands_susie)-1, 1);
+                show_debug_message("Último comando de Susie eliminado");
+            }
+            break;
     }
 }

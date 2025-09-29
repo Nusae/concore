@@ -5,5 +5,5 @@ global.explode = false;
 
 timer = 0;
 pressed = false;
-required_time = room_speed * 2; // 10 segundos
+required_time = room_speed * 2; 
 completed = false;
