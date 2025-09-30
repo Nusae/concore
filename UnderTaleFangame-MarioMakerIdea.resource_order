@@ -77,7 +77,6 @@
     {"name":"sMeta","order":33,"path":"sprites/sMeta/sMeta.yy",},
     {"name":"sPlay","order":31,"path":"sprites/sPlay/sPlay.yy",},
     {"name":"sPlayGray","order":32,"path":"sprites/sPlayGray/sPlayGray.yy",},
-    {"name":"Sprite10","order":16,"path":"sprites/Sprite10/Sprite10.yy",},
     {"name":"sRalseiDown","order":5,"path":"sprites/sRalseiDown/sRalseiDown.yy",},
     {"name":"sRalseiLeft","order":6,"path":"sprites/sRalseiLeft/sRalseiLeft.yy",},
     {"name":"sRalseiRight","order":7,"path":"sprites/sRalseiRight/sRalseiRight.yy",},

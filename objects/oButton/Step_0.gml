@@ -22,7 +22,7 @@ else if (global.counter_button >= 2) {
 }
 
 // Verificar si hay algún personaje encima (oKris, oRalsei, oSusie)
-if(global.commandmode){
+if(global.tempmode){
 	
 	if (place_meeting(x, y, oKris) || place_meeting(x, y, oRalsei) || place_meeting(x, y, oSusie)) {
 	    if (!pressed) {

@@ -1,4 +1,6 @@
 global.commandmode = false; 
+global.tempmode = false; 
+
 global.keys_golden = 1; // Llaves doradas
 global.keys_gray = 2;   // Llaves grises
 global.sentado_susie = 0;

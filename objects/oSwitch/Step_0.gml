@@ -30,7 +30,7 @@ else if (global.counter_switch >= 3) {
     global.show_fail_window = true; // Activamos ventana de fallo
 }
 
-if(global.commandmode){
+if(global.tempmode){
 // Verificar si hay algún personaje encima (oKris, oRalsei, oSusie)
 	if (place_meeting(x, y, oKris) || place_meeting(x, y, oRalsei) || place_meeting(x, y, oSusie)) {
 	    if (!pressed) {

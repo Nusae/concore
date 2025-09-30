@@ -1,4 +1,4 @@
-if(global.commandmode){
+if(global.tempmode){
 	timer += 1;
 
 	if (timer >= room_speed * 2){
