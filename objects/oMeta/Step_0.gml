@@ -1,18 +1,36 @@
 // if everyone in meta then script to change room 
 // Kris
-if (place_meeting(x, y, oKris)) {
-    global.kris_meta = true;
+if(!activado){
+	if (place_meeting(x, y, oKris)) {
+	    global.kris_meta = true;
+		activado = true;
+	}
+
+	// Ralsei
+	if (place_meeting(x, y, oRalsei)) {
+	    global.ralsei_meta = true;
+		activado = true;
+	}
+
+	// Susie
+	if (place_meeting(x, y, oSusie)) {
+	    global.susie_meta = true;
+		activado = true;
+	}
+	// Si fue activado, comienza la animación
+    if (activado) {
+        image_speed = 0.05; // velocidad de animación
+    }
+}
+else {
+    // Si la animación llegó al último frame, detenerla ahí
+    if (image_index >= image_number - 1) {
+        image_speed = 0;
+        image_index = image_number - 1; // quedarse en el último sprite
+    }
 }
 
-// Ralsei
-if (place_meeting(x, y, oRalsei)) {
-    global.ralsei_meta = true;
-}
 
-// Susie
-if (place_meeting(x, y, oSusie)) {
-    global.susie_meta = true;
-}
 
 if (room == Lv2) {
     if (global.kris_meta && global.susie_meta) {

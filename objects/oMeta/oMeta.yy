@@ -31,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sMeta",
-    "path":"sprites/sMeta/sMeta.yy",
+    "name":"sTransporter",
+    "path":"sprites/sTransporter/sTransporter.yy",
   },
   "spriteMaskId":null,
   "visible":true,
