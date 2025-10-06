@@ -5,10 +5,10 @@ char_options   = ["Ralsei", "Kris", "Susie"];
 action_options = ["move_to", "delay", "P", "V"];
 
 target_options = selected_action == 1
-    ? ["1s","2s","5s","1s","2s","5s","1s","2s","5s","1s","2s"]
+    ? ["1s","2s","3s","1s","2s","3s","1s"]
     : (selected_action == 0
         ? ["Wall","Button","Switch","Ralsei","Kris","Susie","Meta"]
-        : ["Oro","Gris"]);
+        : ["Oro","Gris","Oro","Gris","Oro","Gris","Oro"]);
 
 //-------------------------
 // RESET DE TARGET AL CAMBIAR ACCIÓN

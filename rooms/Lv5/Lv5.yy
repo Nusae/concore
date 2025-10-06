@@ -85,6 +85,7 @@
     {"name":"inst_15987718","path":"rooms/Lv5/Lv5.yy",},
     {"name":"inst_1E459A9D","path":"rooms/Lv5/Lv5.yy",},
     {"name":"inst_79DCBF9E","path":"rooms/Lv5/Lv5.yy",},
+    {"name":"inst_13B0728F","path":"rooms/Lv5/Lv5.yy",},
   ],
   "isDnd":false,
   "layers":[
@@ -168,6 +169,7 @@
         {"$GMRInstance":"v2","%Name":"inst_15987718","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_15987718","objectId":{"name":"oViewpoint","path":"objects/oViewpoint/oViewpoint.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":608.0,"y":224.0,},
         {"$GMRInstance":"v2","%Name":"inst_1E459A9D","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_1E459A9D","objectId":{"name":"oButton","path":"objects/oButton/oButton.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":320.0,"y":192.0,},
         {"$GMRInstance":"v2","%Name":"inst_79DCBF9E","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_79DCBF9E","objectId":{"name":"obj_times_display","path":"objects/obj_times_display/obj_times_display.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":544.0,"y":96.0,},
+        {"$GMRInstance":"v2","%Name":"inst_13B0728F","colour":4294967295,"frozen":false,"hasCreationCode":false,"ignore":false,"imageIndex":0,"imageSpeed":1.0,"inheritCode":false,"inheritedItemId":null,"inheritItemSettings":false,"isDnd":false,"name":"inst_13B0728F","objectId":{"name":"oDialogoCommand","path":"objects/oDialogoCommand/oDialogoCommand.yy",},"properties":[],"resourceType":"GMRInstance","resourceVersion":"2.0","rotation":0.0,"scaleX":1.0,"scaleY":1.0,"x":672.0,"y":160.0,},
       ],"layers":[],"name":"Instances","properties":[],"resourceType":"GMRInstanceLayer","resourceVersion":"2.0","userdefinedDepth":false,"visible":true,},
     {"$GMRBackgroundLayer":"","%Name":"Background","animationFPS":15.0,"animationSpeedType":0,"colour":4278190080,"depth":100,"effectEnabled":true,"effectType":null,"gridX":32,"gridY":32,"hierarchyFrozen":false,"hspeed":0.0,"htiled":false,"inheritLayerDepth":false,"inheritLayerSettings":false,"inheritSubLayers":true,"inheritVisibility":true,"layers":[],"name":"Background","properties":[],"resourceType":"GMRBackgroundLayer","resourceVersion":"2.0","spriteId":null,"stretch":false,"userdefinedAnimFPS":false,"userdefinedDepth":false,"visible":true,"vspeed":0.0,"vtiled":false,"x":0,"y":0,},
   ],

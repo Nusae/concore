@@ -1,5 +1,10 @@
+var current_room = room_get_name(room);
+
 global.commandmode = true; 
-global.tempmode = false; 
+if(current_room == "Lv6" ){
+	global.tempmode = true;
+}
+else{global.tempmode = false;}
 
 global.keys_golden = 1; // Llaves doradas
 global.keys_gray = 2;   // Llaves grises
