@@ -1,45 +1,114 @@
-// Reiniciamos el contador global
-global.counter_button = 0;
+/// --- BUTTON STEP EVENT ---
 
-// Revisamos si hay personajes (usando una lista de objetos específicos)
-if (place_meeting(x, y, oKris))   global.counter_button += 1;
-if (place_meeting(x, y, oRalsei)) global.counter_button += 1;
-if (place_meeting(x, y, oSusie))  global.counter_button += 1;
+// Aseguramos variables locales
+if (!variable_instance_exists(id, "completed")) completed = false;
+if (!variable_instance_exists(id, "pressed")) pressed = false;
+if (!variable_instance_exists(id, "timer")) timer = 0;
 
-// Reaccionar según el número de personajes encima
-if (global.counter_button == 0) {
-    sprite_index = sButtonUnPressed;
-} 
-else if (global.counter_button == 1) {
-    sprite_index = sButtonPressed;
-	completed = true; 
-} 
-else if (global.counter_button >= 2) {
-    sprite_index = sBoom;
-    global.explode = true;
-    show_debug_message("¡BOOM! Demasiados procesos.");
-    global.show_fail_window = true;
+// ===================================
+// 🟢 MODO NORMAL (cada botón independiente)
+// ===================================
+if (!global.commandmode) {
+    if (!completed) {
+        var local_counter = 0;
+
+        if (place_meeting(x, y, oKris))   local_counter += 1;
+        if (place_meeting(x, y, oRalsei)) local_counter += 1;
+        if (place_meeting(x, y, oSusie))  local_counter += 1;
+
+        // Reacciones según número de personajes
+        if (local_counter == 0) {
+            sprite_index = sButtonUnPressed;
+            image_speed = 0.1;
+        } 
+        else if (local_counter == 1) {
+            sprite_index = sButtonPressed;
+            image_speed = 0.1;
+
+            // Mantener la animación hasta el último frame
+            if (image_index < image_number - 1) {
+                image_index += image_speed;
+            } else {
+                image_index = image_number - 1;
+                image_speed = 0;
+                completed = true; // se queda presionado
+            }
+        } 
+        else if (local_counter >= 2) {
+            sprite_index = sBoom;
+            image_speed = 1;
+
+            if (image_index < image_number - 1) {
+                image_index += image_speed;
+            } else {
+                image_index = image_number - 1;
+                image_speed = 0;
+            }
+
+            show_debug_message("💥 ¡BOOM! Demasiados procesos en un mismo botón.");
+            global.explode = true;
+            global.show_fail_window = true;
+        }
+    } 
+    else {
+        // Mantener el botón presionado permanentemente
+        sprite_index = sButtonPressed;
+        image_index = image_number - 1;
+        image_speed = 0;
+    }
 }
 
-// Verificar si hay algún personaje encima (oKris, oRalsei, oSusie)
-if(global.tempmode){
-	
-	if (place_meeting(x, y, oKris) || place_meeting(x, y, oRalsei) || place_meeting(x, y, oSusie)) {
-	    if (!pressed) {
-	        pressed = true;
-	        timer = 0;
-	    } else {
-	        timer += 1;
-	    }
-	} else {
-	    pressed = false;
-	    timer = 0;
-	}
+// ===================================
+// 🔴 MODO COMANDO (todos los botones cuentan juntos)
+// ===================================
+else {
+    // Crear y reiniciar el contador global al principio del frame
+    if (!variable_global_exists("counter_button_global")) global.counter_button_global = 0;
 
-	// Verificar si la tarea está completada
-	if (!completed && timer >= required_time) {
-	    completed = true;
-	    sprite_index = sButtonUnPressed;
-	    show_debug_message("Botón completado después de " + string(required_time / room_speed) + " segundos");
-	}
+    // Contamos cuántos personajes están sobre este botón
+    var local_counter = 0;
+    if (place_meeting(x, y, oKris))   local_counter += 1;
+    if (place_meeting(x, y, oRalsei)) local_counter += 1;
+    if (place_meeting(x, y, oSusie))  local_counter += 1;
+
+    // Añadimos al contador global
+    global.counter_button_global += local_counter;
+
+    // --- Animación individual ---
+    if (local_counter == 0) {
+        sprite_index = sButtonUnPressed;
+        image_speed = 0.1;
+    } 
+    else if (local_counter >= 1) {
+        sprite_index = sButtonPressed;
+        image_speed = 0.1;
+
+        // Mantener la animación hasta el último frame
+        if (image_index < image_number - 1) {
+            image_index += image_speed;
+        } else {
+            image_index = image_number - 1;
+            image_speed = 0;
+        }
+    }
+
+    // --- Explosión global ---
+    if (global.counter_button_global >= 2) {
+        sprite_index = sBoom;
+        image_speed = 1;
+
+        if (image_index < image_number - 1) {
+            image_index += image_speed;
+        } else {
+            image_index = image_number - 1;
+            image_speed = 0;
+        }
+
+        show_debug_message("💥 ¡BOOM GLOBAL! Dos o más personajes presionaron botones en modo comando.");
+        global.explode = true;
+        global.show_fail_window = true;
+    }
+
+    // Reiniciamos el contador global al final del Step
+    global.counter_button_global = 0;
 }

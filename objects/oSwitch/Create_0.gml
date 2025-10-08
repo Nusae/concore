@@ -6,4 +6,5 @@ timer = 0;
 pressed = false;
 required_time = room_speed * 1; 
 completed = false;
+global.counter_switch = 0;
 
