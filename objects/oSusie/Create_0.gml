@@ -17,7 +17,7 @@ current_action = noone;
 keys_gray = 0;
 keys_golden = 0;
 movimiento_habilitado = true;
-depth = -50;
+depth = -100;
 
 xspd = 0;
 yspd = 0;

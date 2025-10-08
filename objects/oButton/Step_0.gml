@@ -77,11 +77,12 @@ else {
     // --- Animación individual ---
     if (local_counter == 0) {
         sprite_index = sButtonUnPressed;
-        image_speed = 0.1;
+        image_speed = 1;
     } 
     else if (local_counter >= 1) {
         sprite_index = sButtonPressed;
-        image_speed = 0.1;
+        image_speed = 1;
+		completed = true; 
 
         // Mantener la animación hasta el último frame
         if (image_index < image_number - 1) {

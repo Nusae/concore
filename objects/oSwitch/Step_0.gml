@@ -24,7 +24,7 @@ if (!global.commandmode) {
         else if (counter_switch_local == 1) {
             sprite_index = sSwitchPressed;
             image_speed = 0.1;
-
+	
             if (image_index >= image_number - 1) {
                 image_index = image_number - 1;
                 image_speed = 0;
@@ -81,7 +81,8 @@ else {
         else if (counter_switch_local == 1) {
             sprite_index = sSwitchPressed;
             image_speed = 0.1;
-
+			completed = true; 
+			
             if (image_index >= image_number - 1) {
                 image_index = image_number - 1;
                 image_speed = 0;
