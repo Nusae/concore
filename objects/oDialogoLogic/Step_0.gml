@@ -18,7 +18,7 @@ if (keyboard_check_pressed(vk_space)) {  // Cambia a vk_enter si prefieres "intr
         } else {
             finished = true;
             // Transición a Lv1 después del tutorial
-            room_goto(Lv1);  // O a donde quieras ir después
+            room_goto(Lv2);  // O a donde quieras ir después
         }
     } else {
         // Si presiona espacio antes de terminar, muestra todo de golpe

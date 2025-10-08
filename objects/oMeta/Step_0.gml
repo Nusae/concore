@@ -59,7 +59,7 @@ if (activado) {
                 global.susie_meta = false;
 
                 switch (room) {
-                    case Lv1: room_goto(Lv2); break;
+                    case Lv2: room_goto(Lv1); break;
                     case Lv3: room_goto(Lv4); break;
                     case Lv4: show_debug_message("¡Has completado todos los niveles!"); break;
                 }
