@@ -105,7 +105,7 @@ if (global.commandmode && !waiting_for_commandmode) {
     }
     
     // Actualizar sprite si el movimiento está habilitado
-    if (movimiento_habilitado) { sprite_index = sSusieDown1 }
+    if (movimiento_habilitado) { sprite_index = sSusieDown }
 }
 
 //--------------
