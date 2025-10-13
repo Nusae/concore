@@ -66,7 +66,7 @@ if (global.commandmode && !waiting_for_commandmode) {
                         show_debug_message(my_name + " ya está encima del target, no se hace nada.");
                     }
                     // Si hay otro target válido más cercano → redirigir
-                    else if (dist_blocks <= 30 && (!variable_struct_exists(current_action, "target_instance") 
+                    else if (dist_blocks <= 60 && (!variable_struct_exists(current_action, "target_instance") 
                            || nearby != current_action.target_instance)) {
                         show_debug_message(my_name + " redirigiendo a un target más cercano (" 
                                            + string(nearby.x) + ", " + string(nearby.y) + ")");

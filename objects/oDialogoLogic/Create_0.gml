@@ -46,6 +46,3 @@ if (string_length(dialog_full) > 0) {
     dialog_pos = 1;
     dialog_text = string_copy(dialog_full, 1, dialog_pos);
 }
-
-
-global.commandmode = false; 

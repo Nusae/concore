@@ -58,14 +58,20 @@ if (global.commandmode && !waiting_for_commandmode) {
                 var nearby = instance_nearest(x, y, target_index);
                 if (nearby != noone) {
                     var dist_blocks = point_distance(x, y, nearby.x, nearby.y) / 32;
-                    if (dist_blocks <= 30) {
-                        // Solo redirigir si el target encontrado NO es el que ya estaba persiguiendo
-                        if (!variable_instance_exists(nearby, "already_checked") || nearby != current_action.target_instance) {
-                            show_debug_message(my_name + " redirigiendo a un target más cercano (" + string(nearby.x) + ", " + string(nearby.y) + ")");
-                            path_end();
-                            current_action.target_instance = nearby.id;
-                            handle_move_to(self, current_action);
-                        }
+                    // Si ya estoy en el target → no hago nada
+                    if (variable_struct_exists(current_action, "target_instance") 
+                        && nearby == current_action.target_instance 
+                        && dist_blocks < 1) {
+                        show_debug_message(my_name + " ya está encima del target, no se hace nada.");
+                    }
+                    // Si hay otro target válido más cercano → redirigir
+                    else if (dist_blocks <= 60 && (!variable_struct_exists(current_action, "target_instance") 
+                           || nearby != current_action.target_instance)) {
+                        show_debug_message(my_name + " redirigiendo a un target más cercano (" 
+                                           + string(nearby.x) + ", " + string(nearby.y) + ")");
+                        path_end();
+                        current_action.target_instance = nearby.id;
+                        handle_move_to(self, current_action);
                     }
                 }
             }

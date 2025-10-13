@@ -35,10 +35,10 @@ if (global.tempmode) {
     }
 
     // Dibujar valores de tiempo
-    draw_text(right_x + 10, times_box_y + 30, "BOTON: 2");
+    draw_text(right_x + 10, times_box_y + 30, "BOTON: 1");
     draw_text(right_x + 10, times_box_y + 50, "PUERTA: 3");
     draw_text(right_x + 10, times_box_y + 70, "SAVER: 2");
-    draw_text(right_x + 10, times_box_y + 90, "SWITCH: 1");
+    draw_text(right_x + 10, times_box_y + 90, "SWITCH: 2");
 
     // Restablecer color
     draw_set_color(c_white);

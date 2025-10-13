@@ -45,8 +45,6 @@ if (room_get_name(room) == "Start") {
 
 if (room_get_name(room) == "Lv3") {
     switch(dialog_index) {
-        case 4: room_restart(); global.lv3_dialogue_completed = true;
-		
+        case 4: room_restart(); global.lv3_dialogue_completed = true;	
     }
-
 }
