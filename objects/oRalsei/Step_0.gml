@@ -170,3 +170,7 @@ if (global.keys_golden > 0) {
     move_spd = 1;
 }
 
+
+if( global.ralsei_cama == true) {
+	visible = false; 
+}

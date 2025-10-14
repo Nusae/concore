@@ -19,3 +19,5 @@ movimiento_habilitado = true;
 xspd = 0;
 yspd = 0;
 move_spd = 1;
+
+global.kris_cama = false; 

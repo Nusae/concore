@@ -22,3 +22,5 @@ depth = -100;
 xspd = 0;
 yspd = 0;
 move_spd = 1;
+
+global.susie_cama = false; 

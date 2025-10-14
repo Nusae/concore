@@ -1,21 +1,12 @@
 // Diálogos específicos para Logic
 dialogos = [
-    "Bienvenido a la sala Logic. Aquí explicaremos los elementos del juego.",
+    "Bienvenido a la sala de operaciones. Aquí explicaremos los elementos del juego.",
     "Primero, el switch: Si no hay nadie encima, no se mueve.",
     "Con 1 persona, empieza a moverse lentamente.", 
     "Con 2 personas, se mueve más rápido.",  
     "¡Pero con 3, explota! Cuidado en los niveles reales.", 
     "Ahora, el botón: Solo puede haber una persona encima.",  
-    "Si pones más de una, explota. /n Usaremos el objeto del mismo tipo comparten contador.",  
-    "Finalmente, las puertas: Requieren llaves doradas o grises para abrirse.",
-    "Por ejemplo, una puerta dorada necesita una llave dorada.\n En general en la parte de arriba izquierda",  
-	"Ahora prueba a ir a la puerta con Kris", 
-	"Kris obtiene la llave, como ves ahora esta en su cabecita", 
-	"Y luego lo guardas en el guardador, esa cosa gris del suelo", 
-	"Una vez lo atraviesas te teletransporta, en los niveles lo entenderas",
-	"Además una vez guardado nadie puede guardar ahí \ny una vez abierto una puerta esta abierto para todos",
-	"Eso hace que ya no lo tenga Kris sino que cualquiera puede usarlo",
-	"¡Listo! Ahora puedes ir a los niveles reales."  
+    "Si pones más de una, explota.",   
 ];
 
 // Personajes visibles desde el inicio

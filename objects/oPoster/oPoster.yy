@@ -1,12 +1,9 @@
 {
   "$GMObject":"",
-  "%Name":"oPC",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":64,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"oPoster",
+  "eventList":[],
   "managed":true,
-  "name":"oPC",
+  "name":"oPoster",
   "overriddenProperties":[],
   "parent":{
     "name":"Objects",
@@ -31,8 +28,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sPCroto",
-    "path":"sprites/sPCroto/sPCroto.yy",
+    "name":"sPoster",
+    "path":"sprites/sPoster/sPoster.yy",
   },
   "spriteMaskId":null,
   "visible":true,

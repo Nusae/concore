@@ -170,3 +170,8 @@ if (global.keys_golden > 0) {
     movimiento_habilitado = true;
     move_spd = 1;
 }
+
+
+if( global.kris_cama == true) {
+	visible = false; 
+}

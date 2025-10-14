@@ -1,5 +1,3 @@
-
-
 if (!finished) {
     dialog_timer += 1;
     if (dialog_timer >= dialog_speed && dialog_pos < string_length(dialog_full)) {
@@ -21,39 +19,13 @@ if (keyboard_check_pressed(vk_space)) {
 
             // Transición a Lv1 solo desde la sala Start
             // y SOLO si todos los personajes están en cama
-            if (room_get_name(room) == "Start"
-                && global.susie_cama
-                && global.ralsei_cama
-                && global.kris_cama) {
-                    
-                room_goto(Logic);
-            }
+            if (room_get_name(room) == "Sleep")                
+                room_goto(Lv2);
+            
         }
     } else {
         // Si presiona espacio antes de terminar, muestra todo de golpe
         dialog_pos = string_length(dialog_full);
         dialog_text = dialog_full;
     }
-}
-
-
-// Aparición de personajes en ciertos diálogos (solo para Start)
-if (room_get_name(room) == "Start") {
-    switch(dialog_index) {
-        case 1: show_ralsei = true; break;
-        case 2: show_susie = true; break;
-        case 3: show_kris   = true; break;
-    }
-    // Actualizar visibilidad en tiempo real
-    oRalsei.visible = show_ralsei;
-    oSusie.visible = show_susie;
-    oKris.visible = show_kris;
-}
-
-if (room_get_name(room) == "Lv3") {
-    switch(dialog_index) {
-        case 4: room_restart(); global.lv3_dialogue_completed = true;
-		
-    }
-
 }

@@ -11,11 +11,12 @@ dialogos = []; // Inicializar vacío
 switch (current_room) {
     case "Start":
         dialogos = [
-            "Buenas a todos, hoy presentare unos temas de concurrencia\n(barra de espacio, siguiente texto)",
+            "Buenas a todos, hoy presentare unos temas de concurrencia",
             "Yo soy Ralsei me muevo con WASD",
             "Yo soy Susie me muevo con UHJK",
             "Y finalmente yo, Kris me muevo con las flechas",
 			"Z,X,C permite hacer cambio de viewpoints",
+			"Acompañalos a sus camas",
         ];
         // En Start, personajes aparecen progresivamente
         show_ralsei = false;
