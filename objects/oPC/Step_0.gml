@@ -1,5 +1,5 @@
 // Distancia máxima para detectar cercanía
-var dist_max = 30;
+var dist_max = 60;
 
 // Detectar cercanía de cada personaje
 var kris_cerca   = instance_exists(oKris)   && (point_distance(x, y, oKris.x, oKris.y) <= dist_max);
