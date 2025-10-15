@@ -27,10 +27,10 @@ switch (current_room) {
     
     case "Lv1":
         dialogos = [
-            "Hemos de pasar por los niveles.",
-            "Se puede elegir la cantidad de color de llaves con: \n 1:Añadir una llave dorada    2:Eliminar una llave dorada\n 3:Añadir una llave gris      4:Eliminar una llave gris \n",
-			"¡Busca la opción más óptima!",
-            "¡Llega a las metas y gana!",
+            "Ordenador: Este es el ultimo nivel",
+			"Ordenador: Os acordais de vuestro sistema de botones y palancas",
+			"Ordenador: Pues ahora teneis que decidir cuantas llaves quieres de oro y grises",
+			"Ordenador: Para pasar por aquí tendras que decidir cuantas llaves quieres con las teclas 1234",
         ];
         // En otros niveles, personajes visibles desde el inicio
         show_ralsei = true;
@@ -38,23 +38,19 @@ switch (current_room) {
         show_kris = true;
         break;
     
-    case "Lv2":
-        dialogos = [
-            "Bienvenido al segundo nivel.",
-            "No hay llave general en esta sala \n Pero Kris tiene una",
-            "¿Este es el tipo de problema de sincronización, que vas a hacer?"
-        ];
-        show_susie = true;
-        show_kris = true;
-        break;
     
 	case "Lv3":
         if (!global.lv3_dialogue_completed) {
             dialogos = [
-                "Has los siguientes pasos:\n Primero que todos lleguen a su primera puerta", 
-                "Ahora has que lleguen a la segunda puerta", 
-                "Este es el concepto de interbloqueo.", 
-                "Ahora prueba a llegar al final sin bloquearte."
+                "Ralsei: He escuchado ruido y he venido lo antes posible",
+				"Ralsei: Os encontrais bien?",
+				"Kris: Si todo bien es el sistema como dije",
+				"Kris: Pero no me habeis oido y ahora el ordenador tiene control de nave",
+				"Susie: No es el ordenador, es un virus un troyano no es el ordenador propio",
+				"Todos: Vamos!",
+				"Todos: Nos acabamos de quedar atrapados, todos tenemos una llave pero falta otra puerta",
+				"Ordenador: Interbloqueo, sere bueno con el 8 podeis repetir los niveles "
+				
             ];
         } else {
             dialogos = []; // No dialogue if completed

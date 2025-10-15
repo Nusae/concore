@@ -1,5 +1,6 @@
 // Dibujar llave dorada y cantidad
 draw_sprite(sKeyGolden, 0, 20, 20); // Sprite de la llave dorada
+ draw_set_color(c_white);
 draw_text(40, 20, "x " + string(global.keys_golden)); // Cantidad al lado
 
 // Dibujar llave gris y cantidad

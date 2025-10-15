@@ -1,3 +1,4 @@
+draw_set_color(c_white);
 draw_self();
 if (variable_instance_exists(id, "keys_golden") == false) keys_golden = 0;
 if (variable_instance_exists(id, "keys_gray") == false) keys_gray = 0;

@@ -30,6 +30,7 @@
     {"name":"oDialogo","order":22,"path":"objects/oDialogo/oDialogo.yy",},
     {"name":"oDialogoCommand","order":28,"path":"objects/oDialogoCommand/oDialogoCommand.yy",},
     {"name":"oDialogoDormir","order":34,"path":"objects/oDialogoDormir/oDialogoDormir.yy",},
+    {"name":"oDialogoJuego1","order":37,"path":"objects/oDialogoJuego1/oDialogoJuego1.yy",},
     {"name":"oDialogoLogic","order":24,"path":"objects/oDialogoLogic/oDialogoLogic.yy",},
     {"name":"oEditor","order":12,"path":"objects/oEditor/oEditor.yy",},
     {"name":"oFloor","order":30,"path":"objects/oFloor/oFloor.yy",},

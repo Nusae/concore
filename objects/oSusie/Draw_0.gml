@@ -1,4 +1,5 @@
 draw_self();
+draw_set_color(c_white);
 if (variable_instance_exists(id, "keys_golden") == false) keys_golden = 0;
 if (variable_instance_exists(id, "keys_gray") == false) keys_gray = 0;
 // Mostrar iconos si tiene llaves
