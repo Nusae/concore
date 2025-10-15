@@ -15,7 +15,3 @@ oSusie.keys_golden = 0;
 oSusie.keys_gray = 0;
 oRalsei.keys_golden = 0; 
 oRalsei.keys_gray = 0;
-
-ralsei_start_x = 100; ralsei_start_y = 100;
-susie_start_x = 150; susie_start_y = 100;
-kris_start_x = 200; kris_start_y = 100;

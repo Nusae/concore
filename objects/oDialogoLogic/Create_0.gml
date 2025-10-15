@@ -14,11 +14,6 @@ show_ralsei = true;
 show_susie = true;
 show_kris = true;
 
-// Posiciones iniciales de personajes (ajusta según tu sala)
-if (instance_exists(oRalsei)) oRalsei.x = 100; oRalsei.y = 100;
-if (instance_exists(oSusie)) oSusie.x = 150; oSusie.y = 100;
-if (instance_exists(oKris)) oKris.x = 200; oKris.y = 100;
-
 // índice del diálogo actual
 dialog_index = 0;
 

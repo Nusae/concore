@@ -17,22 +17,13 @@ if (keyboard_check_pressed(vk_space)) {  // Cambia a vk_enter si prefieres "intr
             dialog_pos = 0;
         } else {
             finished = true;
-            // Transición a Lv1 después del tutorial
-            room_goto(Lv2);  // O a donde quieras ir después
+
+            room_goto(Sleep);  
         }
     } else {
-        // Si presiona espacio antes de terminar, muestra todo de golpe
         dialog_pos = string_length(dialog_full);
         dialog_text = dialog_full;
     }
-}
-
-switch(dialog_index) {
-    case 8: // Antes de "Ahora prueba a ir a la puerta con Kris"
-        if (instance_exists(oKris)) {
-            global.keys_golden = 1; // Dar llave dorada a Kris
-        }
-        break;
 }
 
 
