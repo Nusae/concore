@@ -3,14 +3,14 @@
 // STEP EVENT - SUSIE
 //-------------------------
 // Depuración inicial
-show_debug_message("Step running for Susie, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
+//show_debug_message("Step running for Susie, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
 
 //--------------
 // INICIALIZACIÓN
 //-------------------------
 if (waiting_for_commandmode) {
     if (variable_global_exists("commandmode")) {
-        show_debug_message("Command mode initialized: " + string(global.commandmode));
+       // show_debug_message("Command mode initialized: " + string(global.commandmode));
         if (global.commandmode) {
             speed = 0;
             target_x = x;
@@ -19,7 +19,7 @@ if (waiting_for_commandmode) {
         }
         waiting_for_commandmode = false;
     } else {
-        show_debug_message("Waiting for commandmode to initialize...");
+       // show_debug_message("Waiting for commandmode to initialize...");
         exit;
     }
 }
@@ -145,7 +145,7 @@ else if (!waiting_for_commandmode) {
     if (instance_exists(oPlayButton)) move_spd = (oPlayButton.playmode) ? 1 : 0;
 
     if (xspd != 0 || yspd != 0) {
-        show_debug_message("Susie moved manually to: " + string(x) + ", " + string(y));
+      //  show_debug_message("Susie moved manually to: " + string(x) + ", " + string(y));
     }
 }
 

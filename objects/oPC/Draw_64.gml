@@ -5,32 +5,36 @@ if (global.msg_text != "" && instance_exists(global.msg_speaker)) {
     var py = global.msg_speaker.y + 50; // Posición sobre la cabeza
 
     var text = global.msg_text;
-    
-    // Determinar si es la frase larga (mensaje de análisis)
-    var is_long_phrase = (text == "Analizando sistema: protocolos de datos intactos, sin anomalías detectadas.");
-    
-    // Tamaño de la burbuja: x3 si es la frase larga, normal de lo contrario
-    var half_width = is_long_phrase ? 240 : 80;
-    var half_height = is_long_phrase ? 75 : 25;
-    
-    // Ajustar altura basada en el envoltorio de texto
-    var text_width = half_width * 1.8; // Ancho disponible para texto
-    var text_height = string_height_ext(text, -1, text_width);
-    if (text_height > (half_height * 2 - 10)) {
-        half_height = (text_height / 2) + 15; // Ajustar altura dinámica
-    }
 
-    // Fondo
+    // ───────────────────────────────
+    // Cálculo automático del tamaño de la burbuja
+    // ───────────────────────────────
+    var base_half_width = 80;  // Tamaño base
+    var max_width = 300;       // Ancho máximo permitido antes de envolver texto
+    var margin = 15;           // Margen interno de la burbuja
+
+    // Calcular el ancho del texto con envoltorio
+    var text_width = string_width_ext(text, -1, max_width);
+    var text_height = string_height_ext(text, -1, max_width);
+
+    // Ajustar el tamaño de la burbuja
+    var half_width = clamp(text_width / 2 + margin, base_half_width, max_width / 1.5);
+    var half_height = text_height / 2 + margin;
+
+    // ───────────────────────────────
+    // Dibujo de fondo y borde
+    // ───────────────────────────────
     draw_set_color(c_black);
     draw_roundrect(px - half_width, py - half_height, px + half_width, py + half_height, false);
 
-    // Bordes blancos
     draw_set_color(c_white);
     draw_roundrect(px - half_width, py - half_height, px + half_width, py + half_height, true);
 
-    // Texto con color según el hablante
+    // ───────────────────────────────
+    // Color del texto según hablante
+    // ───────────────────────────────
     if (global.msg_speaker == self) {
-        draw_set_color(c_red); // Rojo para el ordenador (análisis)
+        draw_set_color(c_aqua); // Cian para el ordenador (análisis)
     } else if (global.msg_speaker == oSusie) {
         draw_set_color(c_aqua); // Cian para Susie (informática)
     } else if (global.msg_speaker == oRalsei) {
@@ -40,5 +44,9 @@ if (global.msg_text != "" && instance_exists(global.msg_speaker)) {
     } else {
         draw_set_color(c_white); // Blanco por defecto
     }
-    draw_text_ext(px - half_width + 10, py - half_height + 5, text, -1, text_width);
+
+    // ───────────────────────────────
+    // Dibujo del texto con envoltorio
+    // ───────────────────────────────
+    draw_text_ext(px - half_width + margin, py - half_height + margin, text, -1, max_width);
 }

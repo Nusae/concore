@@ -2,7 +2,7 @@
 // STEP EVENT - KRIS
 //-------------------------
 // Depuración inicial
-show_debug_message("Step running for Kris, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
+//show_debug_message("Step running for Kris, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
 
 //--------------
 // INICIALIZACIÓN

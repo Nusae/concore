@@ -24,43 +24,7 @@ switch (current_room) {
         show_kris = false;
 		
         break;
-    
-    case "Lv1":
-        dialogos = [
-            "Ordenador: Este es el ultimo nivel",
-			"Ordenador: Os acordais de vuestro sistema de botones y palancas",
-			"Ordenador: Pues ahora teneis que decidir cuantas llaves quieres de oro y grises",
-			"Ordenador: Para pasar por aquí tendras que decidir cuantas llaves quieres con las teclas 1234",
-        ];
-        // En otros niveles, personajes visibles desde el inicio
-        show_ralsei = true;
-        show_susie = true;
-        show_kris = true;
-        break;
-    
-    
-	case "Lv3":
-        if (!global.lv3_dialogue_completed) {
-            dialogos = [
-                "Ralsei: He escuchado ruido y he venido lo antes posible",
-				"Ralsei: Os encontrais bien?",
-				"Kris: Si todo bien es el sistema como dije",
-				"Kris: Pero no me habeis oido y ahora el ordenador tiene control de nave",
-				"Susie: No es el ordenador, es un virus un troyano no es el ordenador propio",
-				"Todos: Vamos!",
-				"Todos: Nos acabamos de quedar atrapados, todos tenemos una llave pero falta otra puerta",
-				"Ordenador: Interbloqueo, sere bueno con el 8 podeis repetir los niveles "
-				
-            ];
-        } else {
-            dialogos = []; // No dialogue if completed
-            finished = true; // Skip dialogue display
-        }
-        show_ralsei = true;
-        show_susie = true;
-        show_kris = true;
-        break;
-    
+   
     default:
         // Diálogo por defecto si la sala no coincide (puedes ajustar)
         dialogos = ["Sala no reconocida."];

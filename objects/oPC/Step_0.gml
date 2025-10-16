@@ -1,5 +1,8 @@
+// Código corregido para el evento Step (o similar donde se maneja la lógica)
+
 // Ejecutar solo si estamos en la sala "Logic"
 if (room_get_name(room) == "Logic") {
+    image_index = 0;
     
     // Distancia máxima para detectar cercanía
     var dist_max = 60;
@@ -10,6 +13,7 @@ if (room_get_name(room) == "Logic") {
     var susie_cerca  = instance_exists(oSusie)  && (point_distance(x, y, oSusie.x, oSusie.y) <= dist_max);
 
     // Inicializar variables globales si no existen
+    // (Recomendación: mueve esto al evento Create del objeto para que se ejecute solo una vez)
     if (!variable_global_exists("msg_timer")) global.msg_timer = 0;
     if (!variable_global_exists("msg_text")) global.msg_text = "";
     if (!variable_global_exists("msg_speaker")) global.msg_speaker = noone;
@@ -19,18 +23,15 @@ if (room_get_name(room) == "Logic") {
     // ───────────────────────────────
     // Mostrar mensajes con temporizador
     // ───────────────────────────────
-
-    // Si solo Kris está cerca y aún no se mostró el error
     if (kris_cerca && !ralsei_cerca && !susie_cerca) {
+        // Si solo Kris está cerca y aún no se mostró el error
         image_index = 1; // Sprite de error
         global.msg_text = "Hay un error.";
         global.msg_speaker = oKris;
         global.msg_timer = room_speed; // Dura 1 segundo
         global.error_shown = true; // Marcamos que ya se mostró
-    }
-    // Si Susie está cerca y no se ha realizado el análisis
-    else if (susie_cerca && !global.susie_analyzed) {
-        // Mostrar mensaje técnico
+    } else if (susie_cerca && !global.susie_analyzed) {
+        // Si Susie está cerca y no se ha realizado el análisis
         image_index = 0; // Sin error
         global.msg_text = "Analizando sistema: protocolos de datos intactos, sin anomalías detectadas.";
         global.msg_speaker = self; // El objeto mismo habla
@@ -40,16 +41,14 @@ if (room_get_name(room) == "Logic") {
         if (global.msg_timer == 1) {
             global.susie_analyzed = true; // Marcamos que el análisis ya ocurrió
         }
-    }
-    // Si Susie está cerca y el análisis ya se realizó
-    else if (susie_cerca && global.susie_analyzed) {
+    } else if (susie_cerca && global.susie_analyzed) {
+        // Si Susie está cerca y el análisis ya se realizó
         image_index = 0; // Sin error
         global.msg_text = "No pasa nada.";
         global.msg_speaker = oSusie; // Susie habla
         global.msg_timer = room_speed; // Dura 1 segundo
-    }
-    // Si hay otro personaje también y el error ya se mostró
-    else if (kris_cerca && (ralsei_cerca || susie_cerca) && global.error_shown) {
+    } else if (kris_cerca && (ralsei_cerca || susie_cerca) && global.error_shown) {
+        // Si hay otro personaje también y el error ya se mostró
         image_index = 0; // Sin error
         global.msg_text = "No hay nada.";
         
@@ -61,9 +60,8 @@ if (room_get_name(room) == "Logic") {
         }
         
         global.msg_timer = room_speed;
-    }
-    // Si no hay nadie cerca o ninguna condición especial
-    else {
+    } else {
+        // Si no hay nadie cerca o ninguna condición especial
         image_index = 0; // Sin error
     }
 
@@ -78,9 +76,4 @@ if (room_get_name(room) == "Logic") {
             global.msg_speaker = noone;
         }
     }
-}
-else {
-    // Si NO estamos en la sala Logic, aseguramos que no se muestre nada
-    global.msg_text = "";
-    global.msg_speaker = noone;
 }

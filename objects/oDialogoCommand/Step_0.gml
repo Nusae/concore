@@ -14,23 +14,12 @@ if (!variable_instance_exists(id, "dialog_timer")) {
 }
 
 // Inicializar variables globales para diálogos
-if (room_get_name(room) == "Lv5" && !variable_global_exists("sala5_dialogue_completed")) {
-    global.sala5_dialogue_completed = false;
-}
-if (room_get_name(room) == "Lv6" && !variable_global_exists("sala6_dialogue_completed")) {
-    global.sala6_dialogue_completed = false;
-}
+if (!variable_global_exists("sala5_dialogue_completed")) global.sala5_dialogue_completed = false;
+if (!variable_global_exists("sala6_dialogue_completed")) global.sala6_dialogue_completed = false;
 
 // Definir diálogos por sala
 var current_room = room_get_name(room);
 switch (current_room) {
-    case "Lv4":
-        dialogos = [
-            "Susie: Mira ahí está el ordenador",
-            "Kris: Yo primero por si pasa algo",
-            "Ralsei: Os sigo por detrás"
-        ];
-        break;
     case "Lv5":
         if (!global.sala5_dialogue_completed) {
             dialogos = [
@@ -115,14 +104,17 @@ if (dialog_index < array_length(dialogos)) {
         global.msg_text = string_delete(current_dialog, 1, 7); // Quitar "Susie: "
         global.msg_speaker = oSusie;
         global.msg_timer = room_speed;
+        dialog_text = current_dialog; // Sincronizar para Draw
     } else if (string_pos("Kris:", current_dialog) == 1) {
         global.msg_text = string_delete(current_dialog, 1, 6); // Quitar "Kris: "
         global.msg_speaker = oKris;
         global.msg_timer = room_speed;
+        dialog_text = current_dialog;
     } else if (string_pos("Ralsei:", current_dialog) == 1) {
         global.msg_text = string_delete(current_dialog, 1, 8); // Quitar "Ralsei: "
         global.msg_speaker = oRalsei;
         global.msg_timer = room_speed;
+        dialog_text = current_dialog;
     } else if (string_pos("Ordenador:", current_dialog) == 1) {
         global.msg_text = ""; // No usar burbuja para el ordenador
         global.msg_speaker = noone;
@@ -136,7 +128,6 @@ if (current_room == "Start") {
         case 2: show_susie = true; break;
         case 3: show_kris = true; break;
     }
-    // Actualizar visibilidad en tiempo real
     if (instance_exists(oRalsei)) oRalsei.visible = show_ralsei;
     if (instance_exists(oSusie)) oSusie.visible = show_susie;
     if (instance_exists(oKris)) oKris.visible = show_kris;

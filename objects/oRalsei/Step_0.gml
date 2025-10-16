@@ -3,7 +3,7 @@
 // STEP EVENT - RALSEI
 //-------------------------
 // Depuración inicial
-show_debug_message("Step running for Ralsei, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
+//show_debug_message("Step running for Ralsei, current_action: " + string(current_action) + ", position: " + string(x) + ", " + string(y));
 
 //--------------
 // INICIALIZACIÓN
@@ -144,7 +144,7 @@ else if (!waiting_for_commandmode) {
         move_spd = oPlayButton.playmode ? 1 : 0;
     }
 
-    show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));
+    //show_debug_message("Ralsei moved manually to: " + string(x) + ", " + string(y));
 }
 
 //--------------
