@@ -152,7 +152,7 @@ else if (!waiting_for_commandmode) {
 //-------------------------
 if (global.sentado_ralsei) {
     move_spd = 0;
-    sprite_index = sRalseiSat1;
+    sprite_index = sRalseiSat;
 } else {
     move_spd = 1;
 }

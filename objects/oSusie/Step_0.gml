@@ -154,7 +154,7 @@ else if (!waiting_for_commandmode) {
 //-------------------------
 if (global.sentado_susie) {
     move_spd = 0;
-    sprite_index = sSusieSat1;
+    sprite_index = sSusieSat;
 } else {
     move_spd = 1;
 }

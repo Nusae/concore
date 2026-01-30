@@ -1,3 +1,24 @@
+// Detectar cambio de sala y resetear comandos
+if (!variable_instance_exists(id, "prev_room")) {
+    prev_room = room; // Inicializar en la primera ejecución
+}
+
+if (prev_room != room) {
+    commands_ralsei = [];
+    commands_kris = [];
+    commands_susie = [];
+    
+    // Opcional: Resetear otras variables si hay residuos en ellas
+    selected_char = 0;
+    selected_action = 0;
+    selected_target = 0;
+    prev_action = 0;
+    
+    show_debug_message("Cambio de sala detectado: Comandos reseteados para " + room_get_name(room));
+    
+    prev_room = room; // Actualizar para la próxima verificación
+}
+
 //-------------------------
 // OPCIONES DE LOS DROPDOWNS
 //-------------------------
