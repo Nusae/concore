@@ -6,6 +6,10 @@ if (keyboard_check_pressed(ord("8"))) {
 }
 
 
-if(global.explode){
+
+if(global.explode || ( global.sentado_kris == 1 && global.sentado_susie == 1 && global.sentado_ralsei == 1)){
 	global.show_fail_window = true;
+	oKris.sprite_index = sKrisSat;
+	oSusie.sprite_index = sSusieSat;
+	oRalsei.sprite_index = sRalseiSat;
 }

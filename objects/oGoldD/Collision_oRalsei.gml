@@ -22,7 +22,8 @@ if(global.tempmode){
 			sprite_index = sAuDoorOpened;
 	        solid = false;  
 	    } else {
-	        global.sentado_ralsei= true; 	
+	        global.sentado_ralsei= true; 
+			solid = true; 
 		}
 	}
 }

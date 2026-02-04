@@ -152,12 +152,6 @@ else if (!waiting_for_commandmode) {
 //--------------
 // LÓGICA DE ESTADO
 //-------------------------
-if (global.sentado_susie) {
-    move_spd = 0;
-    sprite_index = sSusieSat;
-} else {
-    move_spd = 1;
-}
 
 if (global.keys_gray > 0) {
     global.sentado_susie = false;

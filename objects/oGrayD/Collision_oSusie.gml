@@ -23,6 +23,7 @@ if(global.tempmode){
 	        solid = false;  
 	    }else {
 	        global.sentado_susie= true; 
+			solid = true; 
 		}
 	}
 }

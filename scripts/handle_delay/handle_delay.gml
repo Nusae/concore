@@ -2,7 +2,7 @@
 /// @description Pauses the character for the specified delay duration (1s, 2s, or 5s)
 /// @param {instance} character The character instance (e.g., oRalsei, oKris, oSusie)
 /// @param {struct} current_action The current command struct with action and target
-function handle_delay(character, current_action) {
+function handle_delay(character, current_action){
     // Ensure the character has a delay timer
     if (!variable_instance_exists(character, "delay_timer")) {
         character.delay_timer = 0;

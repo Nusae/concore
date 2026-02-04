@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sSwitchUnPressed",
-    "path":"sprites/sSwitchUnPressed/sSwitchUnPressed.yy",
+    "name":"sSwitchPressed_1",
+    "path":"sprites/sSwitchPressed_1/sSwitchPressed_1.yy",
   },
   "spriteMaskId":null,
   "visible":true,

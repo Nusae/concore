@@ -11,7 +11,7 @@ show_debug_message("Step ejecutándose para Switch " + string(id) + ", tempmode:
 // ==============================
 // LÓGICA GENERAL (independiente de commandmode)
 // ==============================
-if (!completed) {
+if (!completed && room != Lv1 ) {
     counter_switch_local = 0;
 
     // Contar personajes en el switch local
@@ -21,6 +21,7 @@ if (!completed) {
 
     if (counter_switch_local == 0) {
         sprite_index = sSwitchUnPressed;
+		
         image_speed = 0.1;
     } 
     else if (counter_switch_local == 1) {
@@ -52,6 +53,40 @@ if (!completed) {
         global.explode = true;
         global.show_fail_window = true;
     }
+} else if ( room == Lv1 ){
+	counter_switch_local = 0;
+	if (instance_exists(oKris) && point_distance(x, y, oKris.x, oKris.y) <= 80)   counter_switch_local += 1;
+    if (instance_exists(oRalsei) && point_distance(x, y, oRalsei.x, oRalsei.y) <= 140) counter_switch_local += 1;
+    if (instance_exists(oSusie) && point_distance(x, y, oSusie.x, oSusie.y) <= 110)  counter_switch_local += 1;
+	completed = false; 
+	
+	if (counter_switch_local == 0) {
+        sprite_index = sSwitchUnPressed_1;
+		
+        image_speed = 0.000001;
+    } else if (counter_switch_local == 1) {
+        sprite_index = sSwitchPressed_1;
+        image_speed = 0.005;
+        if (image_index >= image_number - 1) {
+            image_index = image_number - 1;
+            image_speed = 0;
+			completed = true; 
+        }
+    } else if (counter_switch_local == 2) {
+        sprite_index = sSwitchPressed_1;
+        image_speed = 0.01;
+        if (image_index >= image_number - 1) {
+            image_index = image_number - 1;
+            image_speed = 0;
+			completed = true; 
+        }
+		
+	} else if (counter_switch_local >= 3 ) {
+        sprite_index = sBoom;
+        show_debug_message("¡BOOM!");
+        global.explode = true;
+        global.show_fail_window = true;
+	}
 } else {
     sprite_index = sSwitchPressed;
     image_index = image_number - 1;

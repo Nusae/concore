@@ -8,7 +8,7 @@
 //--------------
 // INICIALIZACIÓN
 //-------------------------
-if (waiting_for_commandmode) {
+
     if (variable_global_exists("commandmode")) {
         show_debug_message("Command mode initialized: " + string(global.commandmode));
         if (global.commandmode) {
@@ -22,7 +22,7 @@ if (waiting_for_commandmode) {
         show_debug_message("Waiting for commandmode to initialize...");
         exit;
     }
-}
+
 
 //--------------
 // MODO COMANDO
@@ -150,12 +150,7 @@ else if (!waiting_for_commandmode) {
 //--------------
 // LÓGICA DE ESTADO
 //-------------------------
-if (global.sentado_ralsei) {
-    move_spd = 0;
-    sprite_index = sRalseiSat;
-} else {
-    move_spd = 1;
-}
+
 
 if (global.keys_gray > 0) {
     global.sentado_ralsei = false;
