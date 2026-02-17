@@ -26,5 +26,5 @@ global.sentado_ralsei = 0;
 personaje = 3;
 
 global.commandmode = false;
-
+global.tempmode = false; 
 global.show_fail_window = false; 

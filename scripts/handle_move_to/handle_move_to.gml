@@ -24,7 +24,7 @@ function handle_move_to(character, current_action) {
 
     var target_obj = instance_nearest(character.x, character.y, obj_index);
 
-    if (target_obj == noone) {
+    if (target_obj == noone){
         show_debug_message("⚠️ " + character.my_name + ": No hay instancias de " + target_name);
         exit;
     }

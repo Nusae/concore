@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"sSwitchPressed_1",
-    "path":"sprites/sSwitchPressed_1/sSwitchPressed_1.yy",
+    "name":"sSwitchPressed",
+    "path":"sprites/sSwitchPressed/sSwitchPressed.yy",
   },
   "spriteMaskId":null,
   "visible":true,
