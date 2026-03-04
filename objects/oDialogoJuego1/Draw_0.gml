@@ -1,4 +1,4 @@
-// Dibujar burbujas para personajes
+/*// Dibujar burbujas para personajes
 if (global.msg_text != "" && instance_exists(global.msg_speaker)
     && string_pos("Todos:", dialog_text) != 1
     && string_pos("Ordenador:", dialog_text) != 1
@@ -13,8 +13,8 @@ if (global.msg_text != "" && instance_exists(global.msg_speaker)
     draw_set_font(fnt_espanol_small); // Asegúrate de crear esta fuente en GameMaker
 
     // Convertir coordenadas del mundo a coordenadas de la cámara
-    var px = global.msg_speaker.x + 100 - camera_get_view_x(view_camera[0]);
-    var py = global.msg_speaker.y + 50 - camera_get_view_y(view_camera[0]);
+    var px = global.msg_speaker.x -40;
+    var py = global.msg_speaker.y -20;
 
     var text = global.msg_text;
     
@@ -52,4 +52,4 @@ if (global.msg_text != "" && instance_exists(global.msg_speaker)
 
     // Restaurar fuente original para evitar afectar otros dibujos
     draw_set_font(fnt_espanol);
-}
+}*/

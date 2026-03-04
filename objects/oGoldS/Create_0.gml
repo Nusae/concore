@@ -5,3 +5,4 @@ solid = false;
 my_name = "GoldS";
 
 timer = 0;
+depth = -2; 

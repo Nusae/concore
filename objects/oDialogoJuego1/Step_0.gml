@@ -31,7 +31,7 @@ switch (current_room) {
     case "Lv1":
         dialogos = [
             "Ordenador: Este es el último nivel",
-            "Ordenador: Os acordáis de vuestro sistema de botones y palancas",
+            "Ordenador: Os acordáis de vuestro sistema de botones y palancas (recuerda puede haber hasta dos personajes en la zona con Switch)",
             "Ordenador: Pues ahora tenéis que decidir cuántas llaves quieres de oro y grises",
             "Sistema: Para pasar por aquí tendrás que decidir cuántas llaves quieres con las teclas 1234"
         ];
