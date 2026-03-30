@@ -136,7 +136,7 @@ else if (!waiting_for_commandmode) {
     else { image_speed = 0; image_index = 0; }
 
     // Aplicar movimiento
-    if (movimiento_habilitado) {
+    if (movimiento_habilitado && !global.movimiento_bloqueado && !global.kris_bloqueado) {
         x += xspd;
         y += yspd;
     }

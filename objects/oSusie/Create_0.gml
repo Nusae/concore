@@ -24,3 +24,7 @@ yspd = 0;
 move_spd = 1;
 
 global.susie_cama = false; 
+
+// Inicialización de seguridad para variables globales
+if (!variable_global_exists("movimiento_bloqueado")) global.movimiento_bloqueado = false;
+if (!variable_global_exists("kris_bloqueado")) global.kris_bloqueado = false;

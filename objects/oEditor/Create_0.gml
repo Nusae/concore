@@ -11,6 +11,13 @@ menu_items = [
     {name: "Saver Gold", obj: oGoldS},
 	{name: "Switch", obj: oSwitch},
 	{name: "Button", obj: oButton},
+    {name: "Table", obj: oTable},
+    {name: "PC", obj: oPC},
+    {name: "Poster", obj: oPoster},
+    {name: "Lava Lamp", obj: oLavaLamp},
+    {name: "Chair", obj: oChair},
+    {name: "Bed", obj: oBed},
+    {name: "Meta", obj: oMeta},
 ];
 
 selected_index = 0;
@@ -28,3 +35,8 @@ personaje = 3;
 global.commandmode = false;
 global.tempmode = false; 
 global.show_fail_window = false; 
+
+// Crear tutorial al iniciar
+if (!instance_exists(obj_editor_tutorial)) {
+    instance_create_layer(0, 0, "Instances", obj_editor_tutorial);
+}

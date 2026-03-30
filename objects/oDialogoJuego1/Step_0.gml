@@ -214,3 +214,31 @@ if (current_room == "Lv3") {
         case 10: room_restart(); global.lv3_dialogue_completed = true; break; // Ajustado por el índice correcto
     }
 }
+
+// --- BLOQUEO DE MOVIMIENTO SEGÚN DIÁLOGO ---
+if (!finished) {
+    if (current_room == "Lv2") {
+        // Bloquear a Kris desde el inicio (0) hasta "Veo una caja gris" (10)
+        if (dialog_index >= 0 && dialog_index <= 10) {
+            global.kris_bloqueado = true;
+        } else {
+            global.kris_bloqueado = false;
+        }
+    } else {
+        global.kris_bloqueado = false;
+    }
+
+    if (current_room == "Lv3") {
+        // Bloquear a todos desde "No muevas..." (0) hasta "...virus, un troyano..." (5)
+        if (dialog_index >= 0 && dialog_index <= 5) {
+            global.movimiento_bloqueado = true;
+        } else {
+            global.movimiento_bloqueado = false;
+        }
+    } else {
+        global.movimiento_bloqueado = false;
+    }
+} else {
+    global.movimiento_bloqueado = false;
+    global.kris_bloqueado = false;
+}

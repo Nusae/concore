@@ -42,3 +42,31 @@ if (keyboard_check_pressed(ord("8"))) {
     global.explode = false;
     room_restart(); 
 }
+
+// --- Guardado y Carga de Niveles ---
+if (keyboard_check_pressed(ord("S"))) {
+    save_level("level_editor_1");
+}
+
+if (keyboard_check_pressed(ord("L"))) {
+    load_level("level_editor_1");
+}
+
+// --- Galería y Compartir ---
+if (keyboard_check_pressed(ord("G"))) {
+    if (!instance_exists(obj_level_gallery)) {
+        instance_create_layer(0, 0, "Instances", obj_level_gallery);
+    }
+}
+
+if (keyboard_check_pressed(ord("C"))) {
+    export_level_to_clipboard();
+}
+
+if (keyboard_check_pressed(ord("V"))) {
+    import_level_from_clipboard();
+}
+
+if (keyboard_check_pressed(ord("N"))) {
+    save_level(""); // Genera un nombre automático con fecha/hora
+}

@@ -1,4 +1,6 @@
-/// Evento de colisión: oBed <-> oKris
+/// Evento de colisión: oBed <-> oSusie
+if (global.susie_cama) exit;
+
 if (sprite_index == sBed) {
     // Si la cama está vacía (sin ocupante)
     if (!variable_instance_exists(id, "occupant") || occupant == noone) {

@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"save_level_data",
+  "%Name":"scr_level_persistence",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"save_level_data",
+  "name":"scr_level_persistence",
   "parent":{
     "name":"Scripts",
     "path":"folders/Scripts.yy",

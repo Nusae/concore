@@ -137,8 +137,10 @@ else if (!waiting_for_commandmode) {
     else { image_speed = 0; image_index = 0; }
 
     // Aplicar movimiento
-    x += xspd;
-    y += yspd;
+    if (!global.movimiento_bloqueado) {
+        x += xspd;
+        y += yspd;
+    }
 
     if (instance_exists(oPlayButton)) {
         move_spd = oPlayButton.playmode ? 1 : 0;
