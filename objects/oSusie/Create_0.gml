@@ -1,30 +1,15 @@
-/// @description 
-/*
-xspd = 0; 
-yspd = 0; 
+event_inherited();
 
-move_spd = 1;
-
-has_key = false;
-keys_golden = 0;
-keys_gray = 0;
-movimiento_habilitado = true; */
-
-waiting_for_commandmode = true; // Flag to wait for commandmode initialization
-show_debug_message("Susie waiting for commandmode initialization...");
 my_name = "Susie";
-current_action = noone; 
-keys_gray = 0;
-keys_golden = 0;
-movimiento_habilitado = true;
+spr_up = sSusieUp;
+spr_down = sSusieDown;
+spr_left = sSusieLeft;
+spr_right = sSusieRight;
+
+key_up = ord("U");
+key_down = ord("J");
+key_left = ord("H");
+key_right = ord("K");
+
+global.susie_cama = false;
 depth = -100;
-
-xspd = 0;
-yspd = 0;
-move_spd = 1;
-
-global.susie_cama = false; 
-
-// Inicialización de seguridad para variables globales
-if (!variable_global_exists("movimiento_bloqueado")) global.movimiento_bloqueado = false;
-if (!variable_global_exists("kris_bloqueado")) global.kris_bloqueado = false;

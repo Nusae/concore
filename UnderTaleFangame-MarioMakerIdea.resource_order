@@ -41,6 +41,7 @@
     {"name":"oEditor","order":12,"path":"objects/oEditor/oEditor.yy",},
     {"name":"oFloor","order":30,"path":"objects/oFloor/oFloor.yy",},
     {"name":"oFloorLv3","order":46,"path":"objects/oFloorLv3/oFloorLv3.yy",},
+    {"name":"oGameBase","order":47,"path":"objects/oGameBase/oGameBase.yy",},
     {"name":"oGameLogic","order":25,"path":"objects/oGameLogic/oGameLogic.yy",},
     {"name":"oGameLv1","order":6,"path":"objects/oGameLv1/oGameLv1.yy",},
     {"name":"oGameLv2","order":11,"path":"objects/oGameLv2/oGameLv2.yy",},

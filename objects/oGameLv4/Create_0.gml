@@ -1,23 +1,4 @@
-var current_room = room_get_name(room);
+event_inherited();
 
-global.commandmode = true; 
-if(current_room == "Lv6" ){
-	global.tempmode = true;
-}
-else{global.tempmode = false;}
-
-global.keys_golden = 1; // Llaves doradas
-global.keys_gray = 1;   // Llaves grises
-global.sentado_susie = 0;
-global.sentado_kris = 0;
-global.sentado_ralsei = 0; 
-sprite_index = sWall ; 
+// Configuración específica de Lv4
 personaje = 3; 
-global.show_fail_window = false; 
-
-oKris.keys_golden = 0; 
-oKris.keys_gray = 0;
-oSusie.keys_golden = 0; 
-oSusie.keys_gray = 0;
-oRalsei.keys_golden = 0; 
-oRalsei.keys_gray = 0;

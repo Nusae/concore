@@ -1,20 +1,6 @@
-global.commandmode = false; 
-global.tempmode = false; 
+event_inherited();
 
-global.keys_golden = 1; // Llaves doradas
-global.keys_gray = 2;   // Llaves grises
-global.sentado_susie = 0;
-global.sentado_kris = 0;
-global.sentado_ralsei = 0; 
-sprite_index = sWall ; 
+// Configuración específica de Lv3
+global.keys_golden = 1; 
+global.keys_gray = 2;   
 personaje = 3; 
-global.show_fail_window = false; 
-
-oKris.keys_golden = 0; 
-oKris.keys_gray = 0;
-oSusie.keys_golden = 0; 
-oSusie.keys_gray = 0;
-oRalsei.keys_golden = 0; 
-oRalsei.keys_gray = 0;
-
-global.explode = false; 

@@ -1,7 +1,8 @@
-/// Inicializar variables globales del sistema de diálogo
-global.msg_text = "";
-global.msg_speaker = noone;
-global.dialog_text = "";
-global.finished = false;
-depth = 10; 
+event_inherited();
+depth = 10;
 
+// Variables adicionales para oDialogoJuego1
+show_ralsei = false;
+show_susie = false;
+show_kris = false;
+gold_s_visible = false;
