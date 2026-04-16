@@ -1,5 +1,11 @@
 // --- Lógica Base (Debug, Reinicio y Victoria) ---
 
+// Tecla F4 para alternar pantalla completa
+if (keyboard_check_pressed(vk_f4)) {
+    window_set_fullscreen(!window_get_fullscreen());
+}
+
+
 // Teclas 1-4 para llaves (Ayuda al testeo)
 if (keyboard_check_pressed(ord("1"))) {
     global.keys_golden += 1;
