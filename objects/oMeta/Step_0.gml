@@ -12,14 +12,23 @@ if (place_meeting(x, y, oSusie)) {
 // --- Condición para activar la animación ---
 var todos_listos = false;
 
+// Comprobar objetivos (Botones, Switches, etc.)
+var objetivos_acabados = true;
+with (oButton) { if (!completed) objetivos_acabados = false; }
+with (oSwitch) { if (!completed) objetivos_acabados = false; }
+with (oGoldD)  { if (!opened)    objetivos_acabados = false; }
+with (oGrayD)  { if (!opened)    objetivos_acabados = false; }
+with (oGoldS)  { if (!used)      objetivos_acabados = false; }
+with (oGrayS)  { if (!used)      objetivos_acabados = false; }
+
 if (room == Lv2) {
     // En Lv2 solo Kris y Susie deben llegar
-    if (global.kris_meta && global.susie_meta) {
+    if (global.kris_meta && global.susie_meta && objetivos_acabados) {
         todos_listos = true;
     }
 } else {
     // En otros niveles, todos deben llegar
-    if (global.kris_meta && global.ralsei_meta && global.susie_meta) {
+    if (global.kris_meta && global.ralsei_meta && global.susie_meta && objetivos_acabados) {
         todos_listos = true;
     }
 }
